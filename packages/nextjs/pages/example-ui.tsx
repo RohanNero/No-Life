@@ -14,8 +14,19 @@ const ExampleUI: NextPage = () => {
         <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap" rel="stylesheet" />
       </Head>
       <div className="grid lg:grid-cols-2 flex-grow" data-theme="exampleUi">
+        <div>
+          <ContractData />
+          <button
+            onClick={() => {
+              console.log("hello world");
+            }}
+          >
+            1
+          </button>
+          <button>2</button>
+          <button>3</button>
+        </div>
         <ContractInteraction />
-        <ContractData />
       </div>
     </>
   );
