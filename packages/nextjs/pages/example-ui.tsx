@@ -14,8 +14,10 @@ const ExampleUI: NextPage = () => {
         <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap" rel="stylesheet" />
       </Head>
       <div className="grid lg:grid-cols-2 flex-grow" data-theme="exampleUi">
+        <ContractData />
+
         <div>
-          <ContractData />
+          <ContractInteraction />
           <button
             onClick={() => {
               console.log("hello world");
@@ -26,7 +28,6 @@ const ExampleUI: NextPage = () => {
           <button>2</button>
           <button>3</button>
         </div>
-        <ContractInteraction />
       </div>
     </>
   );
