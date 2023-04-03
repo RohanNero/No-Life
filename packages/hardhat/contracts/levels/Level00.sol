@@ -8,12 +8,8 @@ error Level00__AlreadyPassed(uint count, uint problemId);
  * @notice this level doesn't show the player directly how encoding works, but instead allows them to play with it a little first */
 contract Level00 {
 
-    string _name;
-    uint public x;
-
     /**@notice every Level contract has a `count` variable that represents what problem the player is currently on */
     uint public count;
-
 
     /**@notice The Problem's solutions, passed inside the constructor */
     bytes private _drMorris;
@@ -21,15 +17,18 @@ contract Level00 {
     bytes private _fusedDoctors;
     bytes private _lockedDoor; 
     
-
     /**@notice emitted when provided incorrect calldata */
     event Level00__ZeroDamage();
 
+    /**@notice only the fallback function can call this 
+     * @dev msg.sender must equal this address */
     modifier onlyFallback() {
         require(msg.sender != address(this));
         _;
     }
 
+    /**@notice this requires that players interact with the problem they are on
+     * @dev ensures that the `count` variable is equal to the function's problemId */
     modifier playTheRules(uint _count, uint problemId) {
         require(count == problemId);
         _;
@@ -64,7 +63,7 @@ contract Level00 {
 
 
     /** ------------------------------------------ 
-                    Main Functions
+                    Main Functions / Problems
         ------------------------------------------ 
         * Functions are numbered for organization and once a function is called with the correct input,
         * it cannot be called again. 
@@ -99,7 +98,7 @@ contract Level00 {
     function firstLockedDoor() external playTheRules(count, 3) {
         count = 4;
     }
-    
+
     /**@notice the second problem to solve
      * @dev  */
     function secondLockedDoor() external playTheRules(count, 4) {

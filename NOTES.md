@@ -105,6 +105,7 @@ The **Coding Ray** only has **one** function: `blast`. This function uses low le
 ## For HazardWarning
 
 - make it so users cant use spacebar in the **Hex Converter**
+- play audio onClick ? for dialogue
 
 ## Game high level walkthrough
 
