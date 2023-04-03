@@ -1,4 +1,4 @@
-# :electron: No-Life
+# ☢️ No-Life
 
 Embark on a perilous adventure through solidity encoding and decoding!
 
