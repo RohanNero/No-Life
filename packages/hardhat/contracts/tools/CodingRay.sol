@@ -1,6 +1,6 @@
 //SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.18;
+pragma solidity ^0.8.17;
 
 // likely will set level addresses in constructor so that they arent hard-coded in 
 // but instead stored as private variables so they can only be viewed by looking at the contract storage
