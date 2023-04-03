@@ -23,6 +23,10 @@ Users will have to interact with objects on UI and input various hexadecimal/str
 
 ### In the game's universe:
 
+- **MAY NEED ONE ADDITIONAL TOOL: **BYTE SAVER**, THIS TOOL ALLOWS USERS TO SAVE A CONVERTED BYTES VALUE FROM THE HEX CONVERTER**
+
+  - THE NEED FOR THIS IS BECAUSE FUNCTION SELECTORS HAVE 4 BYTES THAT COME BEFORE ARGUMENTS. (could save one byte string and prepose it to all **Coding Ray** `blast`s.)
+
 - main character will have **two items**:
   - **En/Decoding ray** (maybe change to **Coding Ray**)
     - this will be used for encoding and decoding functions to pass problems and defeat enemies
@@ -96,7 +100,7 @@ The **Coding Ray** only has **one** function: `blast`. This function uses low le
 
 ## Extras
 
-**what if** game branches off into **two endings**, break the matrix/reality by encoding everything, or listen to the `Periwinkle Altiplano Labs` scientists and decode everything back to how it was. After beating the game, users are entered into club(array) with other addresses depending on what ending they chose
+- **what if** game branches off into **two endings**, break the matrix/reality by encoding everything, or listen to the `Periwinkle Altiplano Labs` scientists and decode everything back to how it was. After beating the game, users are entered into club(array) with other addresses depending on what ending they chose
 
 ## For HazardWarning
 
@@ -104,4 +108,4 @@ The **Coding Ray** only has **one** function: `blast`. This function uses low le
 
 ## Temp Notes
 
-Left off working on smart contract logic aka creating problems _( He fresh ==> **c|:)**_
+- Left off working on smart contract logic aka creating problems _( He fresh ==> **c|:)**_
