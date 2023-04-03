@@ -41,8 +41,7 @@ error NoLife__Level00__IncorrectEncoding();
             //revert NoLife__Level00__IncorrectInput();
         //}
     }
-    
-
+t
 
     /**@notice this function is called when players fire their `CODING RAY` while set to encode */
     function encode(bytes memory answer, uint count) public onlyOwner {
