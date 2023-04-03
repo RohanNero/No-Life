@@ -20,12 +20,18 @@ const ExampleUI: NextPage = () => {
           <ContractInteraction />
           <button
             onClick={() => {
-              console.log("hello world");
+              alert("hello world");
             }}
           >
             1
           </button>
-          <button>2</button>
+          <button
+            onClick={() => {
+              console.log("hello world");
+            }}
+          >
+            2
+          </button>
           <button>3</button>
         </div>
       </div>
