@@ -1,3 +1,4 @@
+/* eslint-disable*/
 import { useEffect, useRef, useState } from "react";
 import Marquee from "react-fast-marquee";
 import { useAnimationConfig, useScaffoldContractRead, useScaffoldEventSubscriber } from "~~/hooks/scaffold-eth";
@@ -5,7 +6,7 @@ import { useAnimationConfig, useScaffoldContractRead, useScaffoldEventSubscriber
 const MARQUEE_PERIOD_IN_SEC = 5;
 
 export const ContractData = () => {
-  const [transitionEnabled, setTransitionEnabled] = useState(true);
+  const [transitionEnabled] = useState(true);
   const [isRightDirection, setIsRightDirection] = useState(false);
   const [marqueeSpeed, setMarqueeSpeed] = useState(0);
 
@@ -85,11 +86,7 @@ export const ContractData = () => {
         <button
           className={`btn btn-circle btn-ghost border border-primary hover:border-primary w-12 h-12 p-1 bg-neutral flex items-center ${isRightDirection ? "justify-start" : "justify-end"
             }`}
-          onClick={() => {
-            if (transitionEnabled) {
-              setIsRightDirection(!isRightDirection);
-            }
-          }}
+
         >
           <div className="border border-primary rounded-full bg-secondary w-2 h-2" />
         </button>
