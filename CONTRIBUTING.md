@@ -1,6 +1,6 @@
 # Welcome to Scaffold-ETH 2 Contributing Guide
 
-Thank you for investing your time in contributing to Scaffold-Eth 2
+Thank you for investing your time in contributing to Scaffold-Eth 2!
 
 This guide aims to provide an overview of the contribution workflow to help us make the contribution process effective for everyone involved.
 
