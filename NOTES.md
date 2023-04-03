@@ -24,10 +24,10 @@ Users will have to interact with objects on UI and input various hexadecimal/str
 ### In the game's universe:
 
 - **MAY NEED ONE ADDITIONAL TOOL: **BYTE SAVER**, THIS TOOL ALLOWS USERS TO SAVE A CONVERTED BYTES VALUE FROM THE HEX CONVERTER**
-
   - THE NEED FOR THIS IS BECAUSE FUNCTION SELECTORS HAVE 4 BYTES THAT COME BEFORE ARGUMENTS. (could save one byte string and prepose it to all **Coding Ray** `blast`s.)
+- **MAY NEED ANOTHER ADDITIONAL TOOL: **ABI PROJECTOR**, THIS TOOL ALLOWS USERS TO VIEW SOLIDITY FUNCTIONS ON THE UI**
 
-- main character will have **two items**:
+- main character will have **two items**: _(MAYBE 4)_
   - **En/Decoding ray** (maybe change to **Coding Ray**)
     - this will be used for encoding and decoding functions to pass problems and defeat enemies
   - **Hex Converter**
@@ -105,6 +105,26 @@ The **Coding Ray** only has **one** function: `blast`. This function uses low le
 ## For HazardWarning
 
 - make it so users cant use spacebar in the **Hex Converter**
+
+## Game high level walkthrough
+
+_encoded/infected people can only speak in `bytes`, so everything they say must be decoded_
+
+0. `abi.encode` the `string` **"DoctorMorris"** and call `blast` with the output from the `Hex Converter`.
+
+- save one doctor, you know the name because you know them
+
+1. `abi.encode` the `string` **"DoctorKeller"** and call `blast` with the output from the `Hex Converter`.
+
+- save one doctor, you know the name because you know them
+
+2. `abi.encode` the `strings` **"Doctor"** and **"Doctor"**, and then call `blast` with the output from the `Hex Converter`.
+
+- save two doctors that have been encoded/fused together, you know their names because you know them
+
+3. `abi.decode` the `bytes` **""** to view the hidden string, then `abi.encode` the password and pass the output to `blast`.
+
+- decode the `bytes` that a locked door has written on it, this will return a string "The password is xyz". Then the player `abi.encode`s the password and passes the output to `blast`.
 
 ## Temp Notes
 
