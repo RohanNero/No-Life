@@ -11,8 +11,8 @@ contract Level2 {
 
 
     /**@notice The Problems */
-    bytes public DrMorris;
-    bytes public DrTom;
+    bytes public z;
+    bytes public y;
     
 
     /**@notice emitted when provided incorrect calldata */
@@ -25,16 +25,16 @@ contract Level2 {
 
     /**@notice values need to be passed to the contract for */
     constructor(bytes memory drMorris, bytes memory drTom ) {
-        DrMorris = drMorris;
-        DrTom = drTom;
+        z = drMorris;
+        y = drTom;
     }
 
     /**@notice this function handles calls to the contract that don't have function selectors
      * @dev such as `abi.encode(Packed)` values */
     fallback() external {
-        if(keccak256(msg.data) == keccak256(DrMorris)) {
+        if(keccak256(msg.data) == keccak256(z)) {
             x = 7;
-        } else if(keccak256(msg.data) == keccak256(DrTom)) {
+        } else if(keccak256(msg.data) == keccak256(y)) {
 
         } else {
             emit LEVEL02__ZeroDamage();
