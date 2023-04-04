@@ -104,4 +104,16 @@ contract Level00 {
     function secondLockedDoor() external playTheRules(count, 4) {
         count = 5;
     }
+
+    /**@notice the first enemy to defeat (our version of a headcrab: `angryferris`; our version of a zombie is `rustdev`)
+     * @dev player will have x seconds to input correct input or they "lose" */
+    function firstEnemy() external playTheRules(count, 5) {
+        count = 6;
+    }
+
+    /**@notice the third door and final problem of Level 00
+     * @dev this door requires players to encode 3 strings in alphabetical order */
+    function thirdLockedDoor () external playTheRules(count, 6) {
+        count = 7;
+    }
 }
