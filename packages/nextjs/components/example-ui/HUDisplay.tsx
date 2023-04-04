@@ -3,7 +3,13 @@ import { ArrowSmallRightIcon } from "@heroicons/react/24/outline";
 
 // import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 
-export const HUDisplay = () => {
+type HUDProps = {
+  setDisplayConverter: React.Dispatch<React.SetStateAction<boolean>>;
+  setDisplayTool: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export const HUDisplay = (props: HUDProps) => {
+  const { setDisplayConverter, setDisplayTool } = props;
   return (
     <div className="flex bg-base-300 relative pb-10">
       <div className="flex flex-col w-full mx-5 sm:mx-8 2xl:mx-20">
@@ -16,7 +22,8 @@ export const HUDisplay = () => {
                 <button
                   className={`btn btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest`}
                   onClick={() => {
-                    alert("hello world");
+                    setDisplayTool(true);
+                    setDisplayConverter(false);
                   }}
                 >
                   (
@@ -29,7 +36,8 @@ export const HUDisplay = () => {
                 <button
                   className={`btn btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest}`}
                   onClick={() => {
-                    console.log("hello world");
+                    setDisplayConverter(true);
+                    setDisplayTool(false);
                   }}
                 >
                   <>

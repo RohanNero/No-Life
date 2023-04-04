@@ -6,7 +6,7 @@ import { ArrowSmallRightIcon } from "@heroicons/react/24/outline";
 
 // import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 
-export const HexConerter = () => {
+export const HexConverter = () => {
   const [hexValue, setHexValue] = useState("");
 
   //   const { writeAsync, isLoading } = useScaffoldContractWrite({
@@ -52,7 +52,7 @@ export const HexConerter = () => {
           </div>
           <div className="mt-4 flex gap-2 items-start">
             <span className="text-sm leading-tight">Hex value:</span>
-            <span className="text-sm leading-tight">${hexValue}</span>
+            <span className="text-sm leading-tight">{hexValue}</span>
           </div>
         </div>
       </div>

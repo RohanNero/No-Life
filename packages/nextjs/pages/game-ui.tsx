@@ -1,10 +1,15 @@
+import { useState } from "react";
 import Head from "next/head";
 import type { NextPage } from "next";
 import { ContractData } from "~~/components/example-ui/ContractData";
 import { HUDisplay } from "~~/components/example-ui/HUDisplay";
+import { HexConverter } from "~~/components/example-ui/HexConverter";
 import { ToolDisplay } from "~~/components/example-ui/ToolDisplay";
 
 const GameUI: NextPage = () => {
+  const [displayConverter, setDisplayConverter] = useState(false);
+  const [displayTool, setDisplayTool] = useState(true);
+
   return (
     <>
       <Head>
@@ -18,8 +23,9 @@ const GameUI: NextPage = () => {
         <ContractData />
 
         <div>
-          <ToolDisplay />
-          <HUDisplay />
+          {displayTool && <ToolDisplay />}
+          {displayConverter && <HexConverter />}
+          <HUDisplay setDisplayTool={setDisplayTool} setDisplayConverter={setDisplayConverter} />
         </div>
       </div>
     </>
