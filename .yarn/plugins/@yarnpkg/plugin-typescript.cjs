@@ -1,5 +1,5 @@
 /* eslint-disable */
-//prettier-ignore the git messages
+//prettier-ignore
 module.exports = {
   name: "@yarnpkg/plugin-typescript",
   factory: function (require) {
