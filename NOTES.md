@@ -109,8 +109,15 @@ The **Coding Ray** only has **one** function: `blast`. This function uses low le
 ## For HazardWarning
 
 - make it so users cant use spacebar in the **Hex Converter**
-- play audio onClick ? for dialogue
+
+## For Ferric
+
 - need player to lose/die if they don't input correct information after _n_ seconds. (when fighting enemies)
+  - basically a popup could show for like 5-10 seconds with "You Died!" or something like that
+- listen for event, and on emit:
+  - area under viewport should update with text based on the same event listener
+  - viewport needs to update image
+  - can we play audio on the same event listener? for game sound effects and potentially dialoge.
 
 ## Temp Notes
 
