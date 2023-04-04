@@ -130,4 +130,12 @@ contract Level00 {
     function thirdLockedDoor () external playTheRules(countMap[msg.sender], 6) {
         countMap[msg.sender] = 7;
     }
+
+    /** Helper functions */
+
+    /**@notice this function resets the level for the caller
+     * @dev sets the `count` for msg.sender to 0 in the countMap mapping */
+     function restart() public {
+        delete countMap[msg.sender];
+     }
 }

@@ -121,4 +121,7 @@ The **Coding Ray** only has **one** function: `blast`. This function uses low le
 
 ## Temp Notes
 
+Should solving the final problem in a `level` deploy the next `level`?
+Or should starting the game run a script that deploys everything? This way all contracts could live on testnet and let anyone play
+
 - Left off working on smart contract logic aka creating problems _( He fresh ==> **c|:)**_
