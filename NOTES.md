@@ -100,32 +100,17 @@ The **Coding Ray** only has **one** function: `blast`. This function uses low le
 
 ## Extras
 
+- **easy, hard, and normal modes**
+  - EASY: no dying
+  - NORMAL: dying but stay at same problem
+  - HARD: dying means you have to restart the current level, (`count` is set to 0)
 - **what if** game branches off into **two endings**, break the matrix/reality by encoding everything, or listen to the `Periwinkle Altiplano Labs` scientists and decode everything back to how it was. After beating the game, users are entered into club(array) with other addresses depending on what ending they chose
 
 ## For HazardWarning
 
 - make it so users cant use spacebar in the **Hex Converter**
 - play audio onClick ? for dialogue
-
-## Game high level walkthrough
-
-_encoded/infected people can only speak in `bytes`, so everything they say must be decoded_
-
-0. `abi.encode` the `string` **"DoctorMorris"** and call `blast` with the output from the `Hex Converter`.
-
-- save one doctor, you know the name because you know them
-
-1. `abi.encode` the `string` **"DoctorKeller"** and call `blast` with the output from the `Hex Converter`.
-
-- save one doctor, you know the name because you know them
-
-2. `abi.encode` the `strings` **"Doctor"** and **"Doctor"**, and then call `blast` with the output from the `Hex Converter`.
-
-- save two doctors that have been encoded/fused together, you know their names because you know them
-
-3. `abi.decode` the `bytes` **""** to view the hidden string, then `abi.encode` the password and pass the output to `blast`.
-
-- decode the `bytes` that a locked door has written on it, this will return a string "The password is xyz". Then the player `abi.encode`s the password and passes the output to `blast`.
+- need player to lose/die if they don't input correct information after _n_ seconds. (when fighting enemies)
 
 ## Temp Notes
 
