@@ -1,4 +1,3 @@
-// removing git messages for my own viewing pleasure
 const path = require("path");
 
 const buildNextEslintCommand = (filenames) =>
