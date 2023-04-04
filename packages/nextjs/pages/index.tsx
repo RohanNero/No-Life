@@ -43,8 +43,8 @@ const Home: NextPage = () => {
               <SparklesIcon className="h-8 w-8 fill-secondary" />
               <p>
                 Experiment with{" "}
-                <Link href="/example-ui" passHref className="link">
-                  Example UI
+                <Link href="/game-ui" passHref className="link">
+                  No Life launchpad
                 </Link>{" "}
                 to build your own UI.
               </p>
