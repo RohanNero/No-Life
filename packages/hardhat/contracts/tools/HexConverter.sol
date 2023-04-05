@@ -4,8 +4,12 @@ pragma solidity ^0.8.7;
 
 contract HexConverter {
 
+   /**@notice used to return decoded values */
+   string[] private strArray;  
+   uint[] private uArray;
+
     //---------------------------------------------------------------------------
-    // ENCODING
+    //                          ENCODING
     //---------------------------------------------------------------------------
 
 
@@ -51,13 +55,117 @@ contract HexConverter {
        }
     }
 
-    //---------------------------------------------------------------------------
-    // DECODING
-    //---------------------------------------------------------------------------
+    /**@notice this function uses abi.encodePacked 
+     * @dev encodePacked keeps only the essential data and is harder to decode*/
+    function encodePacked(string memory strInput) public pure returns(bytes memory data) {
+        data = abi.encodePacked(strInput);
+    }
 
-   /**@notice helper variables for returning decoded values */
-   string[] private strArray;  
-   uint[] private uArray;
+    /**@notice this function allows you to view any function selector by inputting the signature 
+     * @dev example: "functionName(uint256)" */
+    function viewSelector(string calldata _func) external pure returns (bytes4) {
+        return bytes4(keccak256(bytes(_func)));
+    }
+
+    ///-----------------------------------------------------
+    ///       abi.encodeWithSignature FUNCTIONS 
+    ///-----------------------------------------------------
+    
+
+    /**@notice uses abi.encodeWithSignature to create encoding for a function call with up to 3 strings
+     * @dev only works for functions that only take strings as input */
+    function encodeStrSignature(string calldata func, string[] calldata strInput) public pure returns(bytes memory data) {
+        if(strInput.length == 1) {
+            data = abi.encodeWithSignature(func,strInput[0]); 
+        } else if(strInput.length == 2) {
+            data = abi.encodeWithSignature(func,strInput[0],strInput[1]); 
+        } else if(strInput.length == 3) {
+            data = abi.encodeWithSignature(func,strInput[0],strInput[1],strInput[2]); 
+        } 
+    }
+
+    /**@notice uses abi.encodeWithSignature to create encoding for a function call with up to 3 strings and 3 uints
+     *@dev only works for functions that take strings followed by uints as input */
+    function encodeStrUintSignature(string calldata func, string[] calldata strInput, uint[] calldata uInput) public pure returns(bytes memory data) {
+       if(strInput.length == 1 ) {
+           if(uInput.length == 1) {
+               data = abi.encodeWithSignature(func,strInput[0], uInput[0]);
+           } else if(uInput.length == 2) {
+               data = abi.encodeWithSignature(func,strInput[0], uInput[0], uInput[1]);
+           } else if(uInput.length == 3) {
+               data = abi.encodeWithSignature(func,strInput[0], uInput[0], uInput[1], uInput[2]);
+           }
+       } else if (strInput.length == 2 ) {
+           if(uInput.length == 1) {
+               data = abi.encodeWithSignature(func,strInput[0], strInput[1], uInput[0]);
+           } else if(uInput.length == 2) {
+               data = abi.encodeWithSignature(func,strInput[0], strInput[1], uInput[0], uInput[1]);
+           } else if(uInput.length == 3) {
+               data = abi.encodeWithSignature(func,strInput[0], strInput[1], uInput[0], uInput[1], uInput[2]);
+           }
+       } else if (strInput.length == 3 ) {
+           if(uInput.length == 1) {
+               data = abi.encodeWithSignature(func,strInput[0], strInput[1], strInput[2], uInput[0]);
+           } else if(uInput.length == 2) {
+               data = abi.encodeWithSignature(func,strInput[0], strInput[1], strInput[2], uInput[0], uInput[1]);
+           } else if(uInput.length == 3) {
+               data = abi.encodeWithSignature(func,strInput[0], strInput[1], strInput[2], uInput[0], uInput[1], uInput[2]);
+           }
+       }
+    }
+
+    ///-----------------------------------------------------
+    ///        abi.encodeWithSelector FUNCTIONS 
+    ///-----------------------------------------------------
+    
+
+    /**@notice uses abi.encodeWithSelector to create encoding for a function call with up to 3 strings
+     * @dev only works for functions that only take strings as input */
+    function encodeStrSelector(bytes4 func, string[] calldata strInput) public pure returns(bytes memory data) {
+        if(strInput.length == 1) {
+            data = abi.encodeWithSelector(func,strInput[0]); 
+        } else if(strInput.length == 2) {
+            data = abi.encodeWithSelector(func,strInput[0],strInput[1]); 
+        } else if(strInput.length == 3) {
+            data = abi.encodeWithSelector(func,strInput[0],strInput[1],strInput[2]); 
+        } 
+    }
+
+    /**@notice uses abi.encodeWithSelector to create encoding for a function call with up to 3 strings and 3 uints
+     *@dev only works for functions that take strings followed by uints as input */
+    function encodeStrUintSelector(bytes4 func, string[] calldata strInput, uint[] calldata uInput) public pure returns(bytes memory data) {
+       if(strInput.length == 1 ) {
+           if(uInput.length == 1) {
+               data = abi.encodeWithSelector(func,strInput[0], uInput[0]);
+           } else if(uInput.length == 2) {
+               data = abi.encodeWithSelector(func,strInput[0], uInput[0], uInput[1]);
+           } else if(uInput.length == 3) {
+               data = abi.encodeWithSelector(func,strInput[0], uInput[0], uInput[1], uInput[2]);
+           }
+       } else if (strInput.length == 2 ) {
+           if(uInput.length == 1) {
+               data = abi.encodeWithSelector(func,strInput[0], strInput[1], uInput[0]);
+           } else if(uInput.length == 2) {
+               data = abi.encodeWithSelector(func,strInput[0], strInput[1], uInput[0], uInput[1]);
+           } else if(uInput.length == 3) {
+               data = abi.encodeWithSelector(func,strInput[0], strInput[1], uInput[0], uInput[1], uInput[2]);
+           }
+       } else if (strInput.length == 3 ) {
+           if(uInput.length == 1) {
+               data = abi.encodeWithSelector(func,strInput[0], strInput[1], strInput[2], uInput[0]);
+           } else if(uInput.length == 2) {
+               data = abi.encodeWithSelector(func,strInput[0], strInput[1], strInput[2], uInput[0], uInput[1]);
+           } else if(uInput.length == 3) {
+               data = abi.encodeWithSelector(func,strInput[0], strInput[1], strInput[2], uInput[0], uInput[1], uInput[2]);
+           }
+       }
+    }
+
+    ///---------------------------------------------------------------------------
+    ///                             DECODING
+    ///---------------------------------------------------------------------------
+
+  
 
     /**@notice this function decodes strings
      * @dev current max is 3 strings */
@@ -84,7 +192,7 @@ contract HexConverter {
     }
 
      /**@notice this function decodes strings
-     * @dev current max is 3 strings */
+      * @dev current max is 3 strings */
     function decodeStringUint(bytes memory bytesData, uint numOfStrings, uint numOfUints) public returns(string[] memory returnStr, uint[] memory returnU) {
         delete strArray;
         delete uArray;
