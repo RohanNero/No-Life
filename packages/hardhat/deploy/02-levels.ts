@@ -1,5 +1,6 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types"
 import { DeployFunction } from "hardhat-deploy/types"
+import { levelArgs } from "../helper-hardhat-config.ts"
 
 /**
  * Deploys a contract named "YourContract" using the deployer account and
@@ -22,16 +23,30 @@ const deployYourContract: DeployFunction = async function (
   */
   const { deployer } = await hre.getNamedAccounts()
   const { deploy } = hre.deployments
+  //console.log("code reached")
+  //console.log(levelArgs[0])
 
-  await deploy("HexConverter", {
+  /**@notice deploy the Coding Ray */
+  await deploy("Level00", {
     from: deployer,
     // Contract constructor arguments
-    args: [],
+    args: levelArgs[0],
     log: true,
     // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
     // automatically mining the contract deployment transaction. There is no effect on live networks.
     autoMine: true,
   })
+
+  /**@notice deploy the Hex Converter */
+  //   await deploy("Level01", {
+  //     from: deployer,
+  //     // Contract constructor arguments
+  //     args: levelArgs[1],
+  //     log: true,
+  //     // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
+  //     // automatically mining the contract deployment transaction. There is no effect on live networks.
+  //     autoMine: true,
+  //   })
 
   // Get the deployed contract
   // const yourContract = await hre.ethers.getContract("YourContract", deployer);
@@ -41,4 +56,4 @@ export default deployYourContract
 
 // Tags are useful if you have multiple deploy files and only want to run one of them.
 // e.g. yarn deploy --tags YourContract
-deployYourContract.tags = ["Hex"]
+deployYourContract.tags = ["levels"]

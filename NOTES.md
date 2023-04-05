@@ -125,3 +125,7 @@ Should solving the final problem in a `level` deploy the next `level`?
 Or should starting the game run a script that deploys everything? This way all contracts could live on testnet and let anyone play
 
 - Left off working on smart contract logic aka creating problems _( He fresh ==> **c|:)**_
+
+## Lessons
+
+`abi.encodePacked` only saves the essential data so it is impossible to decode unless you have the format/structure of the original content.
