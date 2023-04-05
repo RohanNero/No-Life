@@ -116,6 +116,8 @@ The **Coding Ray** only has **one** function: `blast`. This function uses low le
   - basically a popup could show for like 5-10 seconds with "You Died!" or something like that
 - listen for event, and on emit:
   - area under viewport should update with text based on the same event listener
+    - in addition to the text popping up can we have a button near the text that says `hint`.
+    - these `hint`s will pop up depending on the most previous event listener (so `hint` matches current problem)
   - viewport needs to update image
   - can we play audio on the same event listener? for game sound effects and potentially dialoge.
 
@@ -126,6 +128,70 @@ Or should starting the game run a script that deploys everything? This way all c
 
 - Left off working on smart contract logic aka creating problems _( He fresh ==> **c|:)**_
 
+- For `abi.encodeWithSignature`, the **Hex Converter** will need either more additional functions, or the other functions will need to be **BASS BOOSTED**
+
 ## Lessons
 
+### Level 01
+
 `abi.encodePacked` only saves the essential data so it is impossible to decode unless you have the format/structure of the original content.
+UI text explaining that you would probably want to use `abi.encode` in most cases - want to add a lesson on hash collisons with packed encoding. (likely to look like two locked doors or two enemies)
+
+### Level 02
+
+**UI text:** So far you've been passing in raw `bytes` data to the **Coding Ray** and allowing logic in the `level`s `fallback` function to divert your function call to the correct target. However, from this point forward you will be directly calling functions by prefixing your data with **4** `bytes`. These **4** `bytes` are known as the **function selector**. These are how functions are identified so **every** function has one.
+
+## Game high level walkthrough
+
+_encoded/infected people can only speak in `bytes`, so everything they say must be decoded_
+
+### LEVEL 00 (high level FBME (Future-block-mana-extraction) wing)
+
+0. `abi.encode` the `string` **"DoctorMorris"** and call `blast` with the output from the `Hex Converter`.
+
+- save one doctor, _you know the name because you know them_
+
+1. `abi.encode` the `string` **"DoctorKeller"** and call `blast` with the output from the `Hex Converter`.
+
+- save one doctor, _you know the name because you know them_
+
+2. `abi.encode` the `strings` **"Doctor Tom"** and **"Doctor Jerry"**, and then call `blast` with the output from the `Hex Converter`.
+
+- save two doctors that have been encoded/fused together, _you know their names because you know them_
+
+3. `abi.decode` the `bytes` to view the hidden string, then `abi.encode` the password and pass the output to `blast`.
+
+   - **UI BYTES:** `0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000001b5468652070617373776f726420697320606c616e64736861726b600000000000`
+
+   - decode the `bytes` that a **locked door** has written on it, this will return a string "The password is `landshark`". Then the player `abi.encode`s the password and passes the output to `blast`.
+
+4. `abi.decode` the `bytes` to view the hidden string, then `abi.encode` the password and pass the output to `blast`.
+
+   - **UI BYTES:**
+     `0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000195468652070617373776f72642069732060736561626561726000000000000000`
+
+   - decode the `bytes` that a **locked door** has written on it, this will return a string "The password is `seabear`". Then the player `abi.encode`s the password and passes the output to `blast`.
+
+5. `abi.encode` the `string` **"rabidFerris"** and call `blast` with the output from the `Hex Converter`.
+
+   - first **enemy**, x number of seconds to call `blast` or else you lose _(popup saying you lost or something)_
+
+6. `abi.decode` the `bytes` to view the hidden string, then `abi.encode` the passwords and pass the output to `blast`
+   - **UI BYTES:** `0x000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000a000000000000000000000000000000000000000000000000000000000000000305468652070617373776f726473206172653a20274c696d61272c20274b696c6f272c20616e6420274a756c696574272e00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002b20596f75206d75737420656e746572207468656d20696e20616c7068616265746963616c206f726465722e000000000000000000000000000000000000000000`
+   - decode the `bytes` that a **locked door** has written on it, this will return a string "". Then the player `abi.encode`s the password and passes the output to `blast`.
+
+### LEVEL 01 (Packaging wing)
+
+0. `abi.encode` the `string` **"rabidFerris"**
+
+1. use mental prowess to decode the encoded data, then `abi.encode` the data into the `Hex Converter`, finally pass output to `blast`
+
+   - introduction to `abi.encodePacked`, **locked door** has `0x7061636b6564` set as its encoded data, but we can't `abi.decode` this since it is `abi.encodePacked`. We can have the prompt on the UI give the players a hint at what the password could be by saying something like:
+   - "Since this door utilizes packed encoding, its almost impossible for us to `decode` it without knowing the format of the data."
+   - if player clicks on the `hint` button, this displays: **"a=61, b=62, c=63..."**
+
+2.
+
+3.
+
+4.

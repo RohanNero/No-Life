@@ -15,6 +15,6 @@ You may find the original scaffold-eth 2 README at [SE2.md](SE2.md)!
 - [SCP's "Verify Signature"](https://www.youtube.com/watch?v=vYwYe-Gv_XI)
 - [Joao's encoding medium article](https://medium.com/coinmonks/abi-encode-and-decode-using-solidity-2d372a03e110)
 - [returning strings](https://solidity-kr.readthedocs.io/ko/latest/frequently-asked-questions.html)
-- []()
+- [abi.encodePacked](https://docs.soliditylang.org/en/v0.8.11/abi-spec.html?highlight=encodepacked#non-standard-packed-mode)
 - []()
 - []()
