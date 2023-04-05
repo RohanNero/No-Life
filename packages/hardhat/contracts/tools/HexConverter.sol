@@ -61,12 +61,6 @@ contract HexConverter {
         data = abi.encodePacked(strInput);
     }
 
-    /**@notice this function allows you to view any function selector by inputting the signature 
-     * @dev example: "functionName(uint256)" */
-    function viewSelector(string calldata _func) external pure returns (bytes4) {
-        return bytes4(keccak256(bytes(_func)));
-    }
-
     ///-----------------------------------------------------
     ///       abi.encodeWithSignature FUNCTIONS 
     ///-----------------------------------------------------
@@ -118,6 +112,11 @@ contract HexConverter {
     ///        abi.encodeWithSelector FUNCTIONS 
     ///-----------------------------------------------------
     
+    /**@notice this function allows you to view any function selector by inputting the signature 
+     * @dev example: "functionName(uint256)" */
+    function viewSelector(string calldata _func) external pure returns (bytes4) {
+        return bytes4(keccak256(bytes(_func)));
+    }
 
     /**@notice uses abi.encodeWithSelector to create encoding for a function call with up to 3 strings
      * @dev only works for functions that only take strings as input */
