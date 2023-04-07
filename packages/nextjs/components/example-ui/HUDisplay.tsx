@@ -14,13 +14,13 @@ export const HUDisplay = (props: HUDProps) => {
   return (
     <div className="flex bg-base-300 border-top p-1 border-red-700 absolute w-1/2 bottom-0 ">
       <div className="flex flex-col mx-5 w-full sm:mx-8 2xl:mx-20">
-        <span className="text-4xl sm:text-6xl text-black">HUD</span>
-        <div className="flex flex-col mt-6 px-7 py-8 bg-base-200 opacity-80 rounded-2xl shadow-lg border-2 border-primary">
-          <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-5">
-            <div className="flex rounded-full border border-primary p-1 flex-shrink-0">
-              <div className="flex rounded-full border-2 border-primary p-1">
+        <div className="flex justify-center flex-col mt-6 px-7 py-8 bg-base-200 opacity-80 rounded-2xl gap-2 shadow-lg border-2 border-primary">
+          <span className="text-4xl sm:text-6xl text-black text-center">HUD</span>
+          <div className="mx-auto mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-5">
+            <div className="flex rounded-full p-1 flex-shrink-0">
+              <div className="flex rounded-full border-primary p-1">
                 <button
-                  className={`btn btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest`}
+                  className={`btn btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center hover:gap-2 transition-all tracking-widest`}
                   onClick={() => {
                     setCodingRay(true);
                     setDisplayConverter(false);
@@ -33,7 +33,7 @@ export const HUDisplay = (props: HUDProps) => {
                   </>
                 </button>
                 <button
-                  className={`btn btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest}`}
+                  className={`mx-10 btn btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center hover:gap-2 transition-all tracking-widest}`}
                   onClick={() => {
                     setDisplayConverter(true);
                     setCodingRay(false);
@@ -46,7 +46,7 @@ export const HUDisplay = (props: HUDProps) => {
                   </>
                 </button>
                 <button
-                  className={`btn btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest}`}
+                  className={`btn btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center hover:gap-2 transition-all tracking-widest}`}
                   onClick={() => {
                     setDisplayDecoder(true);
                     setDisplayConverter(false);
