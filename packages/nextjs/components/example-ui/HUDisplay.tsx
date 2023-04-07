@@ -26,12 +26,10 @@ export const HUDisplay = (props: HUDProps) => {
                     setDisplayConverter(false);
                   }}
                 >
-                  (
                   <>
                     Coding Ray
                     <ArrowSmallRightIcon className="w-3 h-3 mt-0.5" />
                   </>
-                  )
                 </button>
                 <button
                   className={`btn btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest}`}

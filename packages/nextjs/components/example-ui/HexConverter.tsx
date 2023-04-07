@@ -3,18 +3,17 @@ import { CopyIcon } from "./assets/CopyIcon";
 import { DiamondIcon } from "./assets/DiamondIcon";
 import { HareIcon } from "./assets/HareIcon";
 import { ArrowSmallRightIcon } from "@heroicons/react/24/outline";
-
-// import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
+import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 
 export const HexConverter = () => {
   const [hexValue, setHexValue] = useState("");
 
-  //   const { writeAsync, isLoading } = useScaffoldContractWrite({
-  //     contractName: "YourContract",
-  //     functionName: "setGreeting",
-  //     args: [newGreeting],
-  //     value: "0.01",
-  //   });
+  const { writeAsync, isLoading } = useScaffoldContractWrite({
+    contractName: "YourContract",
+    functionName: "setGreeting",
+    args: [hexValue],
+    value: "0.01",
+  });
 
   return (
     <div className="flex bg-base-300 relative pb-10">
@@ -36,13 +35,26 @@ export const HexConverter = () => {
               <div className="flex rounded-full border-2 border-primary p-1">
                 <button
                   className={`btn btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest`}
-                  //   onClick={writeAsync}
+                  onClick={writeAsync}
                 >
                   <>
                     Send <ArrowSmallRightIcon className="w-3 h-3 mt-0.5" />
                   </>
                 </button>
               </div>
+            </div>
+            <div className="flex" style={{ position: "relative", height: "200px", width: "200px" }}>
+              <button
+                style={{ position: "absolute", bottom: 0, right: 0 }}
+                className={`btn btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest ${
+                  isLoading ? "loading" : ""
+                }`}
+                onClick={writeAsync}
+              >
+                <>
+                  Enable Decoder <ArrowSmallRightIcon className="w-3 h-3 mt-0.5" />
+                </>
+              </button>
             </div>
           </div>
 
