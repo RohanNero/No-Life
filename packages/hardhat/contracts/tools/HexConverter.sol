@@ -208,6 +208,7 @@ contract HexConverter {
                 uArray.push(u);
                 returnStr = strArray;
                 returnU = uArray;
+                emit StringUintDecoded(returnStr,returnU);
             } else if(numOfUints == 2) {
                 ( string memory str, uint u, uint u2) = abi.decode(bytesData,(string, uint, uint));
                 strArray.push(str);
@@ -215,6 +216,7 @@ contract HexConverter {
                 uArray.push(u2);
                 returnStr = strArray;
                 returnU = uArray;
+                emit StringUintDecoded(returnStr,returnU);
             } else if(numOfUints == 3) {
                 ( string memory str, uint u, uint u2, uint u3) = abi.decode(bytesData,(string, uint, uint, uint));
                 strArray.push(str);
@@ -223,6 +225,7 @@ contract HexConverter {
                 uArray.push(u3);
                 returnStr = strArray;
                 returnU = uArray;
+                emit StringUintDecoded(returnStr,returnU);
             } 
         } else if(numOfStrings == 2) {
             if(numOfUints == 1) {
@@ -232,6 +235,7 @@ contract HexConverter {
                 uArray.push(u);
                 returnStr = strArray;
                 returnU = uArray;
+                emit StringUintDecoded(returnStr,returnU);
             } else if(numOfUints == 2) {
                 ( string memory str, string memory str2, uint u, uint u2) = abi.decode(bytesData,(string,string, uint, uint));
                 strArray.push(str);
@@ -240,6 +244,7 @@ contract HexConverter {
                 uArray.push(u2);
                 returnStr = strArray;
                 returnU = uArray;
+                emit StringUintDecoded(returnStr,returnU);
             } else if(numOfUints == 3) {
                 ( string memory str, string memory str2, uint u, uint u2, uint u3) = abi.decode(bytesData,(string,string, uint, uint, uint));
                 strArray.push(str);
@@ -249,6 +254,7 @@ contract HexConverter {
                 uArray.push(u3);
                 returnStr = strArray;
                 returnU = uArray;
+                emit StringUintDecoded(returnStr,returnU);
             }
         } else if(numOfStrings == 3) {
             if(numOfUints == 1) {
@@ -259,6 +265,7 @@ contract HexConverter {
                 uArray.push(u);
                 returnStr = strArray;
                 returnU = uArray;
+                emit StringUintDecoded(returnStr,returnU);
             } else if(numOfUints == 2) {
                 ( string memory str, string memory str2, string memory str3, uint u, uint u2) = abi.decode(bytesData,(string, string,string, uint, uint));
                 strArray.push(str);
@@ -268,16 +275,18 @@ contract HexConverter {
                 uArray.push(u2);
                 returnStr = strArray;
                 returnU = uArray;
+                emit StringUintDecoded(returnStr,returnU);
             } else if(numOfUints == 3) {
                 ( string memory str, string memory str2, string memory str3, uint u, uint u2, uint u3) = abi.decode(bytesData,(string, string,string, uint, uint, uint));
                 strArray.push(str);
-             strArray.push(str2);
-             strArray.push(str3);
+                strArray.push(str2);
+                strArray.push(str3);
                 uArray.push(u);
                 uArray.push(u2);
                 uArray.push(u3);
                 returnStr = strArray;
                 returnU = uArray;
+                emit StringUintDecoded(returnStr,returnU);
             }
         }
 

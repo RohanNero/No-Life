@@ -12,7 +12,7 @@ export const Decoder = () => {
   const { writeAsync: decodeString } = useScaffoldContractWrite({
     contractName: "HexConverter",
     functionName: "decodeString",
-    args: [`0x${hexValue}`, numOfStrings ? BigNumber.from(numOfStrings) : BigNumber.from(0)],
+    args: [`0x${hexValue}`, numOfStrings ? BigNumber.from(numOfStrings) : BigNumber.from(1)],
   });
 
   const { writeAsync: decodeStringUint } = useScaffoldContractWrite({
@@ -33,6 +33,15 @@ export const Decoder = () => {
     },
   });
 
+  useScaffoldEventSubscriber({
+    contractName: "HexConverter",
+    eventName: "StringUintDecoded",
+    listener: (data, uData) => {
+      alert(data);
+      console.log("udata:", uData);
+    },
+  });
+
   const hexInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === " ") {
       e.preventDefault();
@@ -40,10 +49,14 @@ export const Decoder = () => {
   };
 
   const handleCall = () => {
-    if (numOfUints) {
-      decodeString;
+    //alert(numOfUints ? BigNumber.from(numOfUints) : BigNumber.from(0) == 0);
+    console.log("strings:", numOfStrings);
+    console.log("uints:", numOfUints);
+    if ((numOfUints ? numOfUints : 0) == 0) {
+      decodeString();
     } else {
-      decodeStringUint;
+      console.log("code reached");
+      decodeStringUint();
     }
   };
 
