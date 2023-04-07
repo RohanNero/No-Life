@@ -28,8 +28,8 @@ export const CodingRay = () => {
           <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-5">
             <input
               type="text"
-              placeholder="Write your greeting here"
-              className="input font-bai-jamjuree w-full px-5 bg-red-600 bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white uppercase"
+              placeholder="Enter Correct Conversion"
+              className="input font-bai-jamjuree w-full px-5 bg-red-600 bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white"
               onChange={e => setNewGreeting(e.target.value)}
             />
             <div className="flex rounded-full border border-primary p-1 flex-shrink-0">

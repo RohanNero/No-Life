@@ -8,7 +8,7 @@ import { useScaffoldContractRead } from "~~/hooks/scaffold-eth";
 export const HexConverter = () => {
   const [hexValue, setHexValue] = useState("");
 
-  const { data: currentData, isLoading: isLoading } = useScaffoldContractRead({
+  const { data: currentData } = useScaffoldContractRead({
     contractName: "HexConverter",
     functionName: "getSelector",
     args: [hexValue],
@@ -32,7 +32,7 @@ export const HexConverter = () => {
           <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-5">
             <input
               type="text"
-              placeholder="Write your greeting here"
+              placeholder="Enter Here For Conversion"
               className="input font-bai-jamjuree w-full px-5 bg-red-600 bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white"
               onChange={e => setHexValue(e.target.value)}
               onKeyPress={hexInput}
@@ -48,19 +48,6 @@ export const HexConverter = () => {
                   </>
                 </button>
               </div>
-            </div>
-            <div className="flex" style={{ position: "relative", height: "200px", width: "200px" }}>
-              <button
-                style={{ position: "absolute", bottom: 0, right: 0 }}
-                className={`btn bg-red-700 btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest ${
-                  isLoading ? "loading" : ""
-                }`}
-                //onClick={fetch}
-              >
-                <>
-                  Enable Decoder <ArrowSmallRightIcon className="w-3 h-3 mt-0.5" />
-                </>
-              </button>
             </div>
           </div>
 
