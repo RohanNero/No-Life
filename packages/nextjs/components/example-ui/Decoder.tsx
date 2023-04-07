@@ -8,9 +8,8 @@ import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 
 export const Decoder = () => {
   const [hexValue, setHexValue] = useState("");
-  alert(hexValue);
   const bigInt = ethers.BigNumber.from(7);
-
+  console.log("hexvalue: ", hexValue);
   const { data: currentData } = useScaffoldContractWrite({
     contractName: "HexConverter",
     functionName: "decodeString",
