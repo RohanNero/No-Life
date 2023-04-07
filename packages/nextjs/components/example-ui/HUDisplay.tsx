@@ -12,7 +12,7 @@ type HUDProps = {
 export const HUDisplay = (props: HUDProps) => {
   const { setDisplayConverter, setCodingRay, setDisplayDecoder } = props;
   return (
-    <div className="flex bg-base-300 border-top border-red-700 absolute w-1/2 bottom-0 ">
+    <div className="flex bg-base-300 border-top p-1 border-red-700 absolute w-1/2 bottom-0 ">
       <div className="flex flex-col mx-5 w-full sm:mx-8 2xl:mx-20">
         <span className="text-4xl sm:text-6xl text-black">HUD</span>
         <div className="flex flex-col mt-6 px-7 py-8 bg-base-200 opacity-80 rounded-2xl shadow-lg border-2 border-primary">
