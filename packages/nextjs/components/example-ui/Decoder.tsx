@@ -12,13 +12,17 @@ export const Decoder = () => {
   const { writeAsync: decodeString } = useScaffoldContractWrite({
     contractName: "HexConverter",
     functionName: "decodeString",
-    args: [`0x${hexValue}`, BigNumber.from(numOfStrings)],
+    args: [`0x${hexValue}`, numOfStrings ? BigNumber.from(numOfStrings) : BigNumber.from(0)],
   });
 
   const { writeAsync: decodeStringUint } = useScaffoldContractWrite({
     contractName: "HexConverter",
     functionName: "decodeStringUint",
-    args: [`0x${hexValue}`, BigNumber.from(numOfStrings), BigNumber.from(numOfUints)],
+    args: [
+      `0x${hexValue}`,
+      numOfStrings ? BigNumber.from(numOfStrings) : BigNumber.from(0),
+      numOfUints ? BigNumber.from(numOfUints) : BigNumber.from(0),
+    ],
   });
 
   useScaffoldEventSubscriber({
