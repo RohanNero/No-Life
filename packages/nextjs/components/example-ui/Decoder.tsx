@@ -2,16 +2,19 @@ import { useState } from "react";
 import { CopyIcon } from "./assets/CopyIcon";
 import { DiamondIcon } from "./assets/DiamondIcon";
 import { HareIcon } from "./assets/HareIcon";
+import { ethers } from "ethers";
 import { ArrowSmallRightIcon } from "@heroicons/react/24/outline";
-import { useScaffoldContractRead } from "~~/hooks/scaffold-eth";
+import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 
 export const Decoder = () => {
   const [hexValue, setHexValue] = useState("");
+  alert(hexValue);
+  const bigInt = ethers.BigNumber.from(7);
 
-  const { data: currentData } = useScaffoldContractRead({
+  const { data: currentData } = useScaffoldContractWrite({
     contractName: "HexConverter",
-    functionName: "getSelector",
-    args: [hexValue],
+    functionName: "decodeString",
+    args: ["0x04", bigInt],
   });
 
   const hexInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -48,6 +51,11 @@ export const Decoder = () => {
                   </>
                 </button>
               </div>
+              <button
+                onClick={() => {
+                  console.log(currentData);
+                }}
+              />
             </div>
           </div>
 
@@ -57,7 +65,7 @@ export const Decoder = () => {
           </div> */}
           <div className="mt-4 flex gap-2 items-start">
             <span className="text-sm leading-tight">Hex value:</span>
-            <span className="text-sm leading-tight">{hexValue == "" ? "" : currentData}</span>
+            {/* <span className="text-sm leading-tight">{hexValue == "" ? "" : currentData}</span> */}
           </div>
         </div>
       </div>
