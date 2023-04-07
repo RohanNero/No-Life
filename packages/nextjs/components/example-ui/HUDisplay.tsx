@@ -6,10 +6,11 @@ import { ArrowSmallRightIcon } from "@heroicons/react/24/outline";
 type HUDProps = {
   setDisplayConverter: React.Dispatch<React.SetStateAction<boolean>>;
   setCodingRay: React.Dispatch<React.SetStateAction<boolean>>;
+  setDisplayDecoder: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const HUDisplay = (props: HUDProps) => {
-  const { setDisplayConverter, setCodingRay } = props;
+  const { setDisplayConverter, setCodingRay, setDisplayDecoder } = props;
   return (
     <div className="flex bg-base-300 relative pb-10">
       <div className="flex flex-col w-full mx-5 sm:mx-8 2xl:mx-20">
@@ -24,6 +25,7 @@ export const HUDisplay = (props: HUDProps) => {
                   onClick={() => {
                     setCodingRay(true);
                     setDisplayConverter(false);
+                    setDisplayDecoder(false);
                   }}
                 >
                   <>
@@ -36,6 +38,7 @@ export const HUDisplay = (props: HUDProps) => {
                   onClick={() => {
                     setDisplayConverter(true);
                     setCodingRay(false);
+                    setDisplayDecoder(false);
                   }}
                 >
                   <>
@@ -44,13 +47,15 @@ export const HUDisplay = (props: HUDProps) => {
                   </>
                 </button>
                 <button
-                  className={`btn btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest`}
+                  className={`btn btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest}`}
                   onClick={() => {
-                    alert("hello world");
+                    setDisplayDecoder(true);
+                    setDisplayConverter(false);
+                    setCodingRay(false);
                   }}
                 >
                   <>
-                    Byt Saviour
+                    Decoder
                     <ArrowSmallRightIcon className="w-3 h-3 mt-0.5" />
                   </>
                 </button>

@@ -3,13 +3,14 @@ import Head from "next/head";
 import type { NextPage } from "next";
 import { CodingRay } from "~~/components/example-ui/CodingRay";
 import { ContractData } from "~~/components/example-ui/ContractData";
+import { Decoder } from "~~/components/example-ui/Decoder";
 import { HUDisplay } from "~~/components/example-ui/HUDisplay";
 import { HexConverter } from "~~/components/example-ui/HexConverter";
 
 const GameUI: NextPage = () => {
   const [displayConverter, setDisplayConverter] = useState(false);
   const [codingRay, setCodingRay] = useState(true);
-
+  const [displayDecoder, setDisplayDecoder] = useState(false);
   return (
     <>
       <Head>
@@ -25,7 +26,12 @@ const GameUI: NextPage = () => {
         <div>
           {codingRay && <CodingRay />}
           {displayConverter && <HexConverter />}
-          <HUDisplay setCodingRay={setCodingRay} setDisplayConverter={setDisplayConverter} />
+          {displayDecoder && <Decoder />}
+          <HUDisplay
+            setCodingRay={setCodingRay}
+            setDisplayConverter={setDisplayConverter}
+            setDisplayDecoder={setDisplayDecoder}
+          />
         </div>
       </div>
     </>
