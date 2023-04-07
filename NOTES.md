@@ -25,8 +25,6 @@ Users will have to interact with objects on UI and input various hexadecimal/str
 
 - **MAY NEED ONE ADDITIONAL TOOL: **BYTE SAVER**, THIS TOOL ALLOWS USERS TO SAVE A CONVERTED BYTES VALUE FROM THE HEX CONVERTER**
   - THE NEED FOR THIS IS BECAUSE FUNCTION SELECTORS HAVE 4 BYTES THAT COME BEFORE ARGUMENTS. (could save one byte string and prepose it to all **Coding Ray** `blast`s.)
-- **MAY NEED ANOTHER ADDITIONAL TOOL: **ABI PROJECTOR**, THIS TOOL ALLOWS USERS TO VIEW SOLIDITY FUNCTIONS ON THE UI**
-
 - main character will have **two items**: _(MAYBE 4)_
   - **En/Decoding ray** (maybe change to **Coding Ray**)
     - this will be used for encoding and decoding functions to pass problems and defeat enemies

@@ -5,7 +5,7 @@ import { HareIcon } from "./assets/HareIcon";
 import { ArrowSmallRightIcon } from "@heroicons/react/24/outline";
 import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 
-export const ToolDisplay = () => {
+export const CodingRay = () => {
   //   const [visible, setVisible] = useState(true);
   const [newGreeting, setNewGreeting] = useState("");
 

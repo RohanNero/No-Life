@@ -14,6 +14,12 @@ export const HexConverter = () => {
     args: [hexValue],
   });
 
+  const hexInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === " ") {
+      e.preventDefault();
+    }
+  };
+
   return (
     <div className="flex bg-base-300 relative pb-10">
       <DiamondIcon className="absolute top-24" />
@@ -29,6 +35,7 @@ export const HexConverter = () => {
               placeholder="Write your greeting here"
               className="input font-bai-jamjuree w-full px-5 bg-red-600 bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white"
               onChange={e => setHexValue(e.target.value)}
+              onKeyPress={hexInput}
             />
             <div className="flex rounded-full border border-primary p-1 flex-shrink-0">
               <div className="flex rounded-full border-2 border-primary p-1">

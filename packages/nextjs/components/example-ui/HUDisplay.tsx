@@ -5,11 +5,11 @@ import { ArrowSmallRightIcon } from "@heroicons/react/24/outline";
 
 type HUDProps = {
   setDisplayConverter: React.Dispatch<React.SetStateAction<boolean>>;
-  setDisplayTool: React.Dispatch<React.SetStateAction<boolean>>;
+  setCodingRay: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const HUDisplay = (props: HUDProps) => {
-  const { setDisplayConverter, setDisplayTool } = props;
+  const { setDisplayConverter, setCodingRay } = props;
   return (
     <div className="flex bg-base-300 relative pb-10">
       <div className="flex flex-col w-full mx-5 sm:mx-8 2xl:mx-20">
@@ -22,7 +22,7 @@ export const HUDisplay = (props: HUDProps) => {
                 <button
                   className={`btn btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest`}
                   onClick={() => {
-                    setDisplayTool(true);
+                    setCodingRay(true);
                     setDisplayConverter(false);
                   }}
                 >
@@ -35,7 +35,7 @@ export const HUDisplay = (props: HUDProps) => {
                   className={`btn btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest}`}
                   onClick={() => {
                     setDisplayConverter(true);
-                    setDisplayTool(false);
+                    setCodingRay(false);
                   }}
                 >
                   <>
