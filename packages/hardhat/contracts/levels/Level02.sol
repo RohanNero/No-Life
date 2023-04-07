@@ -86,10 +86,10 @@ contract Level02 {
 
 
 
-    /**@notice the first person to save! (problem to solve)
+    /**@notice the first problem to solve
      * @dev the fallback function calls this
      * @dev all problems increment the count by one */
-    function zero() external onlyFallback playTheRules(countMap[msg.sender], 0) {
+    function Doctor() external onlyFallback playTheRules(countMap[msg.sender], 0) {
         countMap[msg.sender] = 1; // more secure than `count++`
     }
 
