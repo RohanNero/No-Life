@@ -1,21 +1,45 @@
 import { useState } from "react";
-import { ethers } from "ethers";
+import { BigNumber } from "ethers";
 import { ArrowSmallRightIcon } from "@heroicons/react/24/outline";
-import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
+import { useScaffoldContractWrite, useScaffoldEventSubscriber } from "~~/hooks/scaffold-eth";
 
 export const Decoder = () => {
   const [hexValue, setHexValue] = useState("");
-  const bigInt = ethers.BigNumber.from(7);
+  const [numOfStrings, setNumOfStrings] = useState("");
+  const [numOfUints, setNumOfUints] = useState("");
   console.log("hexvalue: ", hexValue);
-  const { data: currentData } = useScaffoldContractWrite({
+
+  const { writeAsync: decodeString } = useScaffoldContractWrite({
     contractName: "HexConverter",
     functionName: "decodeString",
-    args: ["0x04", bigInt],
+    args: [`0x${hexValue}`, BigNumber.from(numOfStrings)],
+  });
+
+  const { writeAsync: decodeStringUint } = useScaffoldContractWrite({
+    contractName: "HexConverter",
+    functionName: "decodeStringUint",
+    args: [`0x${hexValue}`, BigNumber.from(numOfStrings), BigNumber.from(numOfUints)],
+  });
+
+  useScaffoldEventSubscriber({
+    contractName: "HexConverter",
+    eventName: "StringDecoded",
+    listener: data => {
+      alert(data);
+    },
   });
 
   const hexInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === " ") {
       e.preventDefault();
+    }
+  };
+
+  const handleCall = () => {
+    if (numOfUints) {
+      decodeString;
+    } else {
+      decodeStringUint;
     }
   };
 
@@ -39,17 +63,21 @@ export const Decoder = () => {
               type="text"
               placeholder="# of Strings"
               className="input italic font-bai-jamjuree w-1/3 px-5 bg-red-600 bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white"
+              onChange={e => setNumOfStrings(e.target.value)}
+              onKeyPress={hexInput}
             />
             <input
               type="text"
               placeholder="# of Uints"
               className="input italic ml-auto font-bai-jamjuree w-1/3 px-5 bg-red-600 bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white"
+              onChange={e => setNumOfUints(e.target.value)}
+              onKeyPress={hexInput}
             />
             <div className="flex rounded-full border border-primary p-1 flex-shrink-0">
               <div className="flex rounded-full border-2 border-primary p-1">
                 <button
                   className={`btn btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest`}
-                  //onClick={fetch}
+                  onClick={handleCall}
                 >
                   <>
                     Send <ArrowSmallRightIcon className="w-3 h-3 mt-0.5" />
@@ -58,7 +86,7 @@ export const Decoder = () => {
               </div>
               <button
                 onClick={() => {
-                  console.log(currentData);
+                  console.log("button click");
                 }}
               />
             </div>
