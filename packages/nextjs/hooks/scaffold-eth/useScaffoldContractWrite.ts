@@ -30,6 +30,7 @@ export const useScaffoldContractWrite = <
   const writeTx = useTransactor();
   const [isMining, setIsMining] = useState(false);
   const configuredNetwork = getTargetNetwork();
+  let tx;
 
   const wagmiContractWrite = useContractWrite({
     mode: "recklesslyUnprepared",
@@ -61,7 +62,7 @@ export const useScaffoldContractWrite = <
     if (wagmiContractWrite.writeAsync) {
       try {
         setIsMining(true);
-        await writeTx(wagmiContractWrite.writeAsync());
+        tx = await writeTx(wagmiContractWrite.writeAsync());
       } catch (e: any) {
         const message = getParsedEthersError(e);
         notification.error(message);
@@ -79,5 +80,6 @@ export const useScaffoldContractWrite = <
     isMining,
     // Overwrite wagmi's write async
     writeAsync: sendContractWriteTx,
+    tx,
   };
 };

@@ -56,7 +56,7 @@ contract Level02 {
      * @dev such as `abi.encode(Packed)` values */
     fallback() external {
         if(keccak256(msg.data) == keccak256(_drMorris)) {
-            this.zero();
+            this.Doctor();
         } else if(keccak256(msg.data) == keccak256(_drKeller)) {
             this.one();
         } else if(keccak256(msg.data) == keccak256(_fusedDoctors)) {

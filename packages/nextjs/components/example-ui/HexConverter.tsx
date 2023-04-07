@@ -3,16 +3,15 @@ import { CopyIcon } from "./assets/CopyIcon";
 import { DiamondIcon } from "./assets/DiamondIcon";
 import { HareIcon } from "./assets/HareIcon";
 import { ArrowSmallRightIcon } from "@heroicons/react/24/outline";
-import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
+import { useScaffoldContractRead } from "~~/hooks/scaffold-eth";
 
 export const HexConverter = () => {
   const [hexValue, setHexValue] = useState("");
 
-  const { writeAsync, isLoading } = useScaffoldContractWrite({
-    contractName: "YourContract",
-    functionName: "setGreeting",
+  const { data: currentData, isLoading: isLoading } = useScaffoldContractRead({
+    contractName: "HexConverter",
+    functionName: "getSelector",
     args: [hexValue],
-    value: "0.01",
   });
 
   return (
@@ -28,14 +27,14 @@ export const HexConverter = () => {
             <input
               type="text"
               placeholder="Write your greeting here"
-              className="input font-bai-jamjuree w-full px-5 bg-red-600 bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white uppercase"
+              className="input font-bai-jamjuree w-full px-5 bg-red-600 bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white"
               onChange={e => setHexValue(e.target.value)}
             />
             <div className="flex rounded-full border border-primary p-1 flex-shrink-0">
               <div className="flex rounded-full border-2 border-primary p-1">
                 <button
                   className={`btn btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest`}
-                  onClick={writeAsync}
+                  //onClick={fetch}
                 >
                   <>
                     Send <ArrowSmallRightIcon className="w-3 h-3 mt-0.5" />
@@ -46,10 +45,10 @@ export const HexConverter = () => {
             <div className="flex" style={{ position: "relative", height: "200px", width: "200px" }}>
               <button
                 style={{ position: "absolute", bottom: 0, right: 0 }}
-                className={`btn btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest ${
+                className={`btn bg-red-700 btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest ${
                   isLoading ? "loading" : ""
                 }`}
-                onClick={writeAsync}
+                //onClick={fetch}
               >
                 <>
                   Enable Decoder <ArrowSmallRightIcon className="w-3 h-3 mt-0.5" />
@@ -58,13 +57,13 @@ export const HexConverter = () => {
             </div>
           </div>
 
-          <div className="mt-4 flex gap-2 items-start">
+          {/* <div className="mt-4 flex gap-2 items-start">
             <span className="text-sm leading-tight">Price:</span>
             <div className="badge badge-warning">0.01 ETH + Gas</div>
-          </div>
+          </div> */}
           <div className="mt-4 flex gap-2 items-start">
             <span className="text-sm leading-tight">Hex value:</span>
-            <span className="text-sm leading-tight">{hexValue}</span>
+            <span className="text-sm leading-tight">{hexValue == "" ? "" : currentData}</span>
           </div>
         </div>
       </div>

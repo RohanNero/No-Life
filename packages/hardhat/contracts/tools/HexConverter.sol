@@ -8,6 +8,9 @@ contract HexConverter {
    string[] private strArray;  
    uint[] private uArray;
 
+   event StringDecoded(string[] data);
+   event StringUintDecoded(string [] data, uint [] uData);
+
     //---------------------------------------------------------------------------
     //                          ENCODING
     //---------------------------------------------------------------------------
@@ -61,11 +64,16 @@ contract HexConverter {
         data = abi.encodePacked(strInput);
     }
 
+    /**@notice this function allows you to view any function selector by inputting the signature 
+     * @dev example: "functionName(uint256)" */
+    function getSelector(string calldata _func) external pure returns (bytes4) {
+        return bytes4(keccak256(bytes(_func)));
+    }
+
     ///-----------------------------------------------------
     ///       abi.encodeWithSignature FUNCTIONS 
     ///-----------------------------------------------------
     
-
     /**@notice uses abi.encodeWithSignature to create encoding for a function call with up to 3 strings
      * @dev only works for functions that only take strings as input */
     function encodeStrSignature(string calldata func, string[] calldata strInput) public pure returns(bytes memory data) {
@@ -112,11 +120,6 @@ contract HexConverter {
     ///        abi.encodeWithSelector FUNCTIONS 
     ///-----------------------------------------------------
     
-    /**@notice this function allows you to view any function selector by inputting the signature 
-     * @dev example: "functionName(uint256)" */
-    function viewSelector(string calldata _func) external pure returns (bytes4) {
-        return bytes4(keccak256(bytes(_func)));
-    }
 
     /**@notice uses abi.encodeWithSelector to create encoding for a function call with up to 3 strings
      * @dev only works for functions that only take strings as input */
@@ -174,17 +177,20 @@ contract HexConverter {
             string memory str = abi.decode(bytesData,(string));
             strArray.push(str);
             returnStr = strArray;
+            emit StringDecoded(returnStr);
         } else if(numOfStrings == 2) {
              (string memory str, string memory str2) =  abi.decode(bytesData, (string, string));
              strArray.push(str);
              strArray.push(str2);
              returnStr = strArray;
+             emit StringDecoded(returnStr);
         } else if(numOfStrings == 3) {
              (string memory str, string memory str2, string memory str3) =  abi.decode(bytesData, (string, string, string));
              strArray.push(str);
              strArray.push(str2);
              strArray.push(str3);
              returnStr = strArray;
+             emit StringDecoded(returnStr);
         }
 
         
