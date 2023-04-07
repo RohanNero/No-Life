@@ -128,6 +128,14 @@ Or should starting the game run a script that deploys everything? This way all c
 
 - For `abi.encodeWithSignature`, the **Hex Converter** will need either more additional functions, or the other functions will need to be **BASS BOOSTED**
 
+### Plan currently
+
+- viewport to display current image // scratched for now.
+- current text/task to display inside of viewport instead of below
+- both of those to update on correct `blast`
+- hex converter to be able to call different functions
+- create decoder
+
 ## Lessons
 
 ### Level 01
