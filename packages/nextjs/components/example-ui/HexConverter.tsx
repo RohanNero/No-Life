@@ -2,7 +2,6 @@ import { useState } from "react";
 import { CopyIcon } from "./assets/CopyIcon";
 import { DiamondIcon } from "./assets/DiamondIcon";
 import { HareIcon } from "./assets/HareIcon";
-import { ArrowSmallRightIcon } from "@heroicons/react/24/outline";
 import { useScaffoldContractRead } from "~~/hooks/scaffold-eth";
 
 export const HexConverter = () => {
@@ -37,18 +36,6 @@ export const HexConverter = () => {
               onChange={e => setHexValue(e.target.value)}
               onKeyPress={hexInput}
             />
-            <div className="flex rounded-full border border-primary p-1 flex-shrink-0">
-              <div className="flex rounded-full border-2 border-primary p-1">
-                <button
-                  className={`btn btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest`}
-                  //onClick={fetch}
-                >
-                  <>
-                    Send <ArrowSmallRightIcon className="w-3 h-3 mt-0.5" />
-                  </>
-                </button>
-              </div>
-            </div>
           </div>
 
           {/* <div className="mt-4 flex gap-2 items-start">

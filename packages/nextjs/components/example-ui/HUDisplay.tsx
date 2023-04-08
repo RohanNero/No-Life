@@ -13,7 +13,7 @@ export const HUDisplay = (props: HUDProps) => {
   const { setDisplayConverter, setCodingRay, setDisplayDecoder } = props;
   return (
     <div className="flex bg-base-300 border-top p-1 border-red-700 absolute w-1/2 bottom-0 ">
-      <div className="flex flex-col mx-5 w-full sm:mx-8 2xl:mx-20">
+      <div className="flex-grow mt-5 mx-5 w-full sm:mx-8 2xl:mx-20">
         <div className="flex justify-center flex-col mt-6 px-7 py-8 bg-base-200 opacity-80 rounded-2xl gap-2 shadow-lg border-2 border-primary">
           <span className="text-4xl sm:text-6xl text-black text-center">HUD</span>
           <div className="mx-auto mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-5">
