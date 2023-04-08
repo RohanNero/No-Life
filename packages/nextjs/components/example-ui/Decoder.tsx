@@ -20,8 +20,8 @@ export const Decoder = () => {
   };
 
   return (
-    <div className="flex flex-col mb-1 p-1 bg-red-300 relative">
-      <div className="flex-grow mx-5 sm:mx-8 mx-20 mb-1">
+    <div className="flex flex-col h-full w-full mb-1 p-1 bg-red-300 relative">
+      <div className="flex-grow mx-5 h-full sm:mx-8 mx-20 mb-1">
         <div className="flex flex-col mt-6 px-7 py-8 bg-base-200 opacity-80 rounded shadow-lg border-2 border-primary">
           <span className="text-4xl sm:text-6xl text-black text-center">Decoder</span>
 

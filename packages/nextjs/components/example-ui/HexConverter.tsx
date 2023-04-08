@@ -2,6 +2,7 @@ import { useState } from "react";
 import { CopyIcon } from "./assets/CopyIcon";
 import { DiamondIcon } from "./assets/DiamondIcon";
 import { HareIcon } from "./assets/HareIcon";
+import { ArrowSmallRightIcon } from "@heroicons/react/24/outline";
 import { useScaffoldContractRead } from "~~/hooks/scaffold-eth";
 
 export const HexConverter = () => {
@@ -37,7 +38,35 @@ export const HexConverter = () => {
               onKeyPress={hexInput}
             />
           </div>
-
+          <div className="mt-2 flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-1">
+            <input
+              type="text"
+              placeholder="# of Strings"
+              className="input italic font-bai-jamjuree w-1/3 px-5 bg-red-600 bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white"
+            />
+            <input
+              type="text"
+              placeholder="# of Uints"
+              className="input italic ml-auto font-bai-jamjuree w-1/3 px-5 bg-red-600 bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white"
+            />
+            <div className="flex rounded-full border border-primary p-1 flex-shrink-0">
+              <div className="flex rounded-full border-2 border-primary p-1">
+                <button
+                  className={`btn btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest`}
+                  //onClick={fetch}
+                >
+                  <>
+                    Send <ArrowSmallRightIcon className="w-3 h-3 mt-0.5" />
+                  </>
+                </button>
+              </div>
+              <button
+                onClick={() => {
+                  console.log(currentData);
+                }}
+              />
+            </div>
+          </div>
           {/* <div className="mt-4 flex gap-2 items-start">
             <span className="text-sm leading-tight">Price:</span>
             <div className="badge badge-warning">0.01 ETH + Gas</div>
