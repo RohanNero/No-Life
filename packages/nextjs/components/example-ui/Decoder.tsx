@@ -1,13 +1,16 @@
 import { useState } from "react";
-import { useScaffoldContractRead } from "~~/hooks/scaffold-eth";
+import { ethers } from "ethers";
+import { ArrowSmallRightIcon } from "@heroicons/react/24/outline";
+import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 
 export const Decoder = () => {
   const [hexValue, setHexValue] = useState("");
-
-  const { data: currentData } = useScaffoldContractRead({
+  const bigInt = ethers.BigNumber.from(7);
+  console.log("hexvalue: ", hexValue);
+  const { data: currentData } = useScaffoldContractWrite({
     contractName: "HexConverter",
-    functionName: "getSelector",
-    args: [hexValue],
+    functionName: "decodeString",
+    args: ["0x04", bigInt],
   });
 
   const hexInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -42,6 +45,23 @@ export const Decoder = () => {
               placeholder="# of Uints"
               className="input italic ml-auto font-bai-jamjuree w-1/3 px-5 bg-red-600 bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white"
             />
+            <div className="flex rounded-full border border-primary p-1 flex-shrink-0">
+              <div className="flex rounded-full border-2 border-primary p-1">
+                <button
+                  className={`btn btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest`}
+                  //onClick={fetch}
+                >
+                  <>
+                    Send <ArrowSmallRightIcon className="w-3 h-3 mt-0.5" />
+                  </>
+                </button>
+              </div>
+              <button
+                onClick={() => {
+                  console.log(currentData);
+                }}
+              />
+            </div>
           </div>
 
           {/* <div className="mt-4 flex gap-2 items-start">
@@ -50,7 +70,7 @@ export const Decoder = () => {
           </div> */}
           <div className="mt-4 flex gap-2 items-start">
             <span className="text-sm leading-tight">Hex value:</span>
-            <span className="text-sm leading-tight">{hexValue == "" ? "" : currentData}</span>
+            {/* <span className="text-sm leading-tight">{hexValue == "" ? "" : currentData}</span> */}
           </div>
         </div>
       </div>

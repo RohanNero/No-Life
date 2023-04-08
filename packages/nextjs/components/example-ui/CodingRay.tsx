@@ -42,7 +42,7 @@ export const CodingRay = () => {
                 >
                   {!isLoading && (
                     <>
-                      Send <ArrowSmallRightIcon className="w-3 h-3 mt-0.5" />
+                      Blast <ArrowSmallRightIcon className="w-3 h-3 mt-0.5" />
                     </>
                   )}
                 </button>
