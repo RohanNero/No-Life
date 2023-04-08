@@ -7,7 +7,7 @@ const MARQUEE_PERIOD_IN_SEC = 5;
 
 export const ContractData = () => {
   const [transitionEnabled] = useState(true);
-  const [isRightDirection, setIsRightDirection] = useState(false);
+  //  const [isRightDirection, setIsRightDirection] = useState(false);
   const [marqueeSpeed, setMarqueeSpeed] = useState(0);
   const { address } = useAccount();
 
@@ -53,9 +53,8 @@ export const ContractData = () => {
 
   return (
     <div
-      className={`flex flex-col max-w-2lg bg-blue-200 bg-opacity-70 rounded-2xl shadow-lg px-5 py-4 w-full ${
-        showAnimation ? "animate-zoom" : ""
-      }`}
+      className={`flex flex-col max-w-2lg bg-gray-400 shadow-lg px-5 py-4 h-full w-full ${showAnimation ? "animate-zoom" : ""
+        }`}
     >
       <div className="flex justify-between w-full">
         <div className="bg-secondary border border-primary rounded-xl flex">
@@ -72,17 +71,6 @@ export const ContractData = () => {
             <div className="px-4 pt-1">{currentLevel || " "}</div>
           </div>
         </div>
-      </div>
-
-      <div className="mt-3 flex items-end justify-between">
-        <button
-          className={`btn btn-circle btn-ghost border border-primary hover:border-primary w-12 h-12 p-1 bg-neutral flex items-center ${
-            isRightDirection ? "justify-start" : "justify-end"
-          }`}
-        >
-          <div className="border border-primary rounded-full bg-secondary w-2 h-2" />
-        </button>
-        <div className="w-44 p-0.5 flex items-center bg-neutral border border-primary rounded-full"></div>
       </div>
     </div>
   );
