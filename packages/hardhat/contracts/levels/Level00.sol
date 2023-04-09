@@ -137,8 +137,9 @@ contract Level00 {
 
     /**@notice this function resets the level for the caller 
      * @notice (Start is capitalized because this is also used for players to start the game)
-     * @dev sets the `count` for msg.sender to 0 in the countMap mapping */
+     * @dev sets the `count` for msg.sender/tx.origin to 0 in the countMap mapping */
      function reStart() public {
+        countMap[msg.sender] = 0;
         countMap[tx.origin] = 0;
      }
 

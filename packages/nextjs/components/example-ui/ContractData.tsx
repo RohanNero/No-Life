@@ -1,8 +1,9 @@
 /* eslint-disable*/
 import { useEffect, useRef, useState } from "react";
 import { dialogue } from "../../utils/scaffold-eth/dialogue";
+import { BigNumber } from "ethers";
 import { useAccount } from "wagmi";
-import { useAnimationConfig, useScaffoldContractRead, useScaffoldEventSubscriber } from "~~/hooks/scaffold-eth";
+import { useScaffoldContractRead, useScaffoldContractWrite, useScaffoldEventSubscriber } from "~~/hooks/scaffold-eth";
 
 export const ContractData = () => {
   const [transitionEnabled] = useState(true);
@@ -13,24 +14,29 @@ export const ContractData = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const greetingRef = useRef<HTMLDivElement>(null);
 
+  const { data: currentLevel, isLoading: isGreetingLoading } = useScaffoldContractRead({
+    contractName: "CodingRay",
+    functionName: "currentData",
+  });
+
+  // VIEW THE PLAYER'S SCORE
   const { data: totalCounter } = useScaffoldContractRead({
     contractName: "Level00",
     functionName: "countMap",
     args: [address],
   });
 
-  const { data: currentLevel, isLoading: isGreetingLoading } = useScaffoldContractRead({
-    contractName: "CodingRay",
-    functionName: "currentData",
+  // RESETS THE PLAYER'S SCORE
+  const { writeAsync: reStart0 } = useScaffoldContractWrite({
+    contractName: "Level00",
+    functionName: "reStart",
   });
-
-  // useScaffoldEventSubscriber({
-  //   contractName: "YourContract",
-  //   eventName: "GreetingChange",
-  //   listener: (greetingSetter, newGreeting, premium, value) => {
-  //     alert(greetingSetter);
-  //   },
+  // const { writeAsync: reStart1 } = useScaffoldContractWrite({
+  //   contractName: "Level01",
+  //   functionName: "reStart",
   // });
+
+  // Listen for direct hit to add dialogue to the UI
   useScaffoldEventSubscriber({
     contractName: "CodingRay",
     eventName: "CodingRay__DirectHit",
@@ -40,22 +46,20 @@ export const ContractData = () => {
       //alert(currentDialogue);
     },
   });
-  // const uint = 7;
-  // const currentGreeting = () => {
-  //   if (uint == 7) {
-  //     console.log("bla blah blah");
-  //   }
-  // };
 
-  const { showAnimation } = useAnimationConfig(totalCounter);
+  // This useEffect() handles resetting the game for players when the page refreshes
+  //console.log("length: ", currentText.length);
+  //console.log("totalCount:", totalCounter);
+  useEffect(() => {
+    const total = totalCounter ? totalCounter : 0;
+    if (currentText.length === 1 && total > BigNumber.from(0)) {
+      reStart0();
+      console.log("Score reset for Level 00");
+    }
+  }, [currentText, totalCounter]);
 
-  const showTransition = transitionEnabled; //&& !!currentGreeting && !isGreetingLoading;
   return (
-    <div
-      className={`flex flex-col max-w-2lg bg-gray-400 shadow-lg px-5 py-4 h-full w-full ${
-        showAnimation ? "animate-zoom" : ""
-      }`}
-    >
+    <div className={`flex flex-col max-w-2lg bg-gray-400 shadow-lg px-5 py-4 h-full w-full `}>
       <div className="flex justify-between w-full">
         <div className="bg-secondary border border-primary rounded-xl flex">
           <div className="p-2 py-1 border-r border-primary flex items-end">Current Level</div>
