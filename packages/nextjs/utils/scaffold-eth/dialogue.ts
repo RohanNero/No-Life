@@ -8,7 +8,7 @@ const two = [
   "Oh no the horror! `DoctorTom` and `DoctorJerry` were in physical contact during the cataclysm and have been encoded together! You must figure out a way to save them!",
 ];
 const three = [
-  "Thank god for your quick thinking! That must've been an awful experience for those two. Now we've lost connection to the main power supply and must manually override the door's locks without the use of our credentials. EMERGENCY KEY: `0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000001b5468652070617373776f726420697320606c616e64736861726b600000000000` (The Coding Ray input must be encoded to work)",
+  "Thank god for your quick thinking! That must've been an awful experience for those two. Now we've lost connection to the main power supply and must manually override the door's locks without the use of our credentials. If I remember correctly these normal containment doors decode into only a single string. EMERGENCY KEY: `0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000001b5468652070617373776f726420697320606c616e64736861726b600000000000` (The Coding Ray input must be encoded to work)",
 ];
 const four = [
   "Nice, so far you've figured out how to decode bytes and encode strings! There's another locked door but I'm sure you'll be able to get us through in no time! EMERGENCY KEY: `0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000195468652070617373776f72642069732060736561626561726000000000000000`",
