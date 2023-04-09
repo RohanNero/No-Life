@@ -12,6 +12,18 @@ export const HexConverter = () => {
     args: [hexValue],
   });
 
+  const { data: selector } = useScaffoldContractRead({
+    contractName: "HexConverter",
+    functionName: "getSelector",
+    args: [signature],
+  });
+
+  // const handleGetSelector = () => {
+  //   if(!hexInput) {
+
+  //   }
+  // }
+
   const hexInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === " ") {
       e.preventDefault();
@@ -63,7 +75,7 @@ export const HexConverter = () => {
                 placeholder="Enter Signature or Selector"
                 className="input italic font-bai-jamjuree w-full px-5 bg-black text-secondary bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-secondary"
                 onChange={e => setSignature(e.target.value)}
-                onKeyPress={hexInput}
+                //onKeyPress={selector}
               />
             )}
             <button
@@ -74,22 +86,26 @@ export const HexConverter = () => {
             >
               {showInput ? "Remove Input" : "Add Input"}
             </button>
-            <span className="text-lg justify-center leading-tight bg-gray-100 rounded-md border border-black p-1 whitespace-wrap">
-              {signature == "" ? "" : signature}{" "}
-            </span>
+            {signature.length > 0 && (
+              <span className="text-lg justify-center leading-tight bg-gray-100 rounded-md border border-black p-1 whitespace-wrap">
+                {selector}
+              </span>
+            )}
           </div>
           {/* <div className="mt-4 flex gap-2 items-start">
             <span className="text-sm leading-tight">Price:</span>
             <div className="badge badge-warning">0.01 ETH + Gas</div>
           </div> */}
-          <div className="mt-4 flex gap-2 items-start">
-            <span className="text-2xl justify-center leading-tight">Hex value:</span>
-            <div className="flex items-center overflow-x-scroll overflow-y-hidden max-w-full">
-              <span className="text-lg justify-center leading-tight bg-gray-100 rounded-md border border-black p-1 whitespace-wrap">
-                {hexValue.length == 0 ? "" : currentData}
-              </span>
+          {hexValue[0] !== "" ? (
+            <div className="mt-4 flex gap-2 items-start">
+              <span className="text-2xl justify-center leading-tight">Hex value:</span>
+              <div className="flex items-center overflow-x-scroll overflow-y-hidden max-w-full">
+                <span className="text-lg justify-center leading-tight bg-gray-100 rounded-md border border-black p-1 whitespace-wrap">
+                  {currentData}
+                </span>
+              </div>
             </div>
-          </div>
+          ) : null}
         </div>
       </div>
     </div>
