@@ -37,19 +37,19 @@ export const ContractData = () => {
     listener: () => {
       setCurrentDialogue(currentDialogue + 1);
       setCurrentText([...currentText, dialogue[currentDialogue]]);
-      alert(currentDialogue);
+      //alert(currentDialogue);
     },
   });
-  const uint = 7;
-  const currentGreeting = () => {
-    if (uint == 7) {
-      console.log("bla blah blah");
-    }
-  };
+  // const uint = 7;
+  // const currentGreeting = () => {
+  //   if (uint == 7) {
+  //     console.log("bla blah blah");
+  //   }
+  // };
 
   const { showAnimation } = useAnimationConfig(totalCounter);
 
-  const showTransition = transitionEnabled && !!currentGreeting && !isGreetingLoading;
+  const showTransition = transitionEnabled; //&& !!currentGreeting && !isGreetingLoading;
   return (
     <div
       className={`flex flex-col max-w-2lg bg-gray-400 shadow-lg px-5 py-4 h-full w-full ${

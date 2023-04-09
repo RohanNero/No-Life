@@ -25,7 +25,9 @@ const seven = [
 const eight = [
   "Thanks, that was a close one. Wait do you hear that? Jesus look! `DoctorPotter`, `DoctorWeasley`, and `DoctorGranger` have been fused together as well! We must help them!",
 ];
-// const nine = [];
+// const nine = [
+//   "Ok Here's the entrance to the Packaging Plant! EMERGENCY KEY: `0x656e636f6465` We won't be able to use our decoder since it's been `abi.encodePacked`. (a=61, b=62, c=63...)",
+// ];
 // const ten = [];
 // const eleven = [];
 // const twelve = [];

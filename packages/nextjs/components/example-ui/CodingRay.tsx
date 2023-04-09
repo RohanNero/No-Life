@@ -84,6 +84,12 @@ export const CodingRay = () => {
     args: [`${contractAddress}`, `0x${newGreeting}`],
   });
 
+  // So you dont have to remove 0x
+  // const handleGreeting = () => {
+  //   newGreeting.slice(2);
+  //   setNewGreeting(newGreeting);
+  // };
+
   useScaffoldEventSubscriber({
     contractName: "CodingRay",
     eventName: "CodingRay__ZeroDamage",
