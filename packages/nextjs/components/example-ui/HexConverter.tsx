@@ -84,8 +84,7 @@ export const HexConverter = () => {
             <span className="text-2xl justify-center leading-tight">Hex value:</span>
             <div className="flex items-center overflow-x-scroll overflow-y-hidden max-w-full">
               <span className="text-lg justify-center leading-tight bg-gray-100 rounded-md border border-black p-1 whitespace-wrap">
-                {/* eslint-disable-next-line */}
-                {hexValue == "" ? "" : currentData}{" "}
+                {hexValue.length == 0 ? "" : currentData}
               </span>
             </div>
           </div>
