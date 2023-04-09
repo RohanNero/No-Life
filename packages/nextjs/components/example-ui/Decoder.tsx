@@ -80,21 +80,21 @@ export const Decoder = () => {
             <input
               type="text"
               placeholder="# of Strings"
-              className="input italic font-bai-jamjuree w-1/3 px-5 bg-red-600 bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white"
+              className="input italic font-bai-jamjuree w-1/3 px-5 bg-secondary bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-black text-black"
               onChange={e => setNumOfStrings(e.target.value)}
               onKeyPress={hexInput}
             />
             <input
               type="text"
               placeholder="# of Uints"
-              className="input italic ml-auto font-bai-jamjuree w-1/3 px-5 bg-red-600 bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white"
+              className="input italic ml-auto font-bai-jamjuree w-1/3 px-5 bg-secondary bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-black text black"
               onChange={e => setNumOfUints(e.target.value)}
               onKeyPress={hexInput}
             />
             <div className="flex rounded-full flex-shrink-0">
               <div className="flex rounded-full border-2 border-primary p-1">
                 <button
-                  className={`btn btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest`}
+                  className={`btn btn-primary rounded-full capitalize font-normal text-secondary w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest`}
                   onClick={handleCall}
                 >
                   <>

@@ -39,7 +39,7 @@ export const HexConverter = () => {
             <input
               type="text"
               placeholder="Enter Here For Conversion"
-              className="input italic font-bai-jamjuree w-full px-5 bg-black text-white bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white"
+              className="input italic font-bai-jamjuree w-full px-5 bg-black text-secondary bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-secondary"
               onChange={e => setHexValue(e.target.value.split(","))}
               onKeyPress={hexInput}
             />
@@ -61,13 +61,15 @@ export const HexConverter = () => {
               <input
                 type="text"
                 placeholder="Enter Signature or Selector"
-                className="input italic font-bai-jamjuree w-full px-5 bg-black text-white bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white"
+                className="input italic font-bai-jamjuree w-full px-5 bg-black text-secondary bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-secondary"
                 onChange={e => setSignature(e.target.value)}
                 onKeyPress={hexInput}
               />
             )}
             <button
-              className={` ml-auto text-white rounded-md px-4 py-2 mt-2 ${showInput ? "bg-red-500" : "bg-green-500"} `}
+              className={` ml-auto rounded-md px-4 py-2 mt-2 ${
+                showInput ? "bg-black text-secondary" : "bg-secondary text-black"
+              } `}
               onClick={() => (showInput ? setShowInput(false) : setShowInput(true))}
             >
               {showInput ? "Remove Input" : "Add Input"}
