@@ -9,7 +9,7 @@ Start by following the main scaffold-eth 2 guide with `yarn chain`, `yarn deploy
 ## Useful links and sources
 
 **Github repo: https://github.com/RohanNero/No-Life**
-**Youtube speedrun demo: https://youtu.be/aEVYG_tif8I**
+**Youtube speedrun demo: https://youtu.be/pAEtaWvoB_0**
 
 **Huge credit to [@austintgriffith](https://github.com/austintgriffith) for building scaffold-eth and [Carletex](https://github.com/carletex) for for [scaffold-eth 2](https://github.com/scaffold-eth/se-2)!**
 
