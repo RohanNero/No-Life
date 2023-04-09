@@ -90,46 +90,46 @@ contract Level01 {
     /**@notice the first person to save! (problem to solve)
      * @dev the fallback function calls this
      * @dev all problems increment the count by one */
-    function secondEnemy() external onlyFallback playTheRules(countMap[msg.sender], 0) {
-        countMap[msg.sender] = 1; // more secure than `count++`
+    function secondEnemy() external onlyFallback playTheRules(countMap[tx.origin], 0) {
+        countMap[tx.origin] = 1; // more secure than `count++`
     }
 
 
     /**@notice the second problem to solve
      * @dev  */
-    function wizardDoctors() external onlyFallback playTheRules(countMap[msg.sender], 1) {
-        countMap[msg.sender] = 2;
+    function wizardDoctors() external onlyFallback playTheRules(countMap[tx.origin], 1) {
+        countMap[tx.origin] = 2;
        
     }
 
     /**@notice the second problem to solve
      * @dev  */
-    function fourthLockedDoor() external playTheRules(countMap[msg.sender], 2) {
-        countMap[msg.sender] = 3;
+    function fourthLockedDoor() external playTheRules(countMap[tx.origin], 2) {
+        countMap[tx.origin] = 3;
     }
 
     /**@notice the second problem to solve
      * @dev  */
-    function fifthLockedDoor() external playTheRules(countMap[msg.sender], 3) {
-        countMap[msg.sender] = 4;
+    function fifthLockedDoor() external playTheRules(countMap[tx.origin], 3) {
+        countMap[tx.origin] = 4;
     }
 
     /**@notice the second problem to solve
      * @dev  */
-    function thirdEnemy() external playTheRules(countMap[msg.sender], 4) {
-        countMap[msg.sender] = 5;
+    function thirdEnemy() external playTheRules(countMap[tx.origin], 4) {
+        countMap[tx.origin] = 5;
     }
 
     /**@notice the first enemy to defeat (our version of a headcrab: `angryferris`; our version of a zombie is `rustdev`)
      * @dev player will have x seconds to input correct input or they "lose", (same as first two problems except risk of losing) */
-    function fourthEnemy() external playTheRules(countMap[msg.sender], 5) {
-        countMap[msg.sender] = 6;
+    function fourthEnemy() external playTheRules(countMap[tx.origin], 5) {
+        countMap[tx.origin] = 6;
     }
 
     /**@notice the third door and final problem of Level 00
      * @dev this door requires players to encode 3 strings in alphabetical order */
-    function sixthLockedDoor () external playTheRules(countMap[msg.sender], 6) {
-        countMap[msg.sender] = 7;
+    function sixthLockedDoor () external playTheRules(countMap[tx.origin], 6) {
+        countMap[tx.origin] = 7;
     }
 
     /** Helper functions */
@@ -138,7 +138,7 @@ contract Level01 {
      * @notice (Start is capitalized because this is also used for players to start the game)
      * @dev sets the `count` for msg.sender to 0 in the countMap mapping */
      function reStart() public {
-        countMap[msg.sender] = 0;
+        countMap[tx.origin] = 0;
      }
     
     /**@notice this function returns this contract's address */

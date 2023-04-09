@@ -60,14 +60,18 @@ export const CodingRay = () => {
     console.log("score0:", score0Value);
     const score1Value = score1 ? score1 : 0;
     console.log("score1:", score1Value);
-    console.log("bool:", score0Value < 7);
+    //console.log("bool:", score0Value < 7);
+    console.log("bool2:", score1Value < 7);
+    console.log("bool3:", score0Value.toString() == "7");
+    console.log("string:", score0Value.toString());
     if (score0Value < BigNumber.from(7)) {
       setContractAddress(level00);
       //console.log(contractAddress);
       blast();
       console.log(score0Value);
-    } else if (score1Value.toString() == "7" && score1Value.toString() < "7") {
+    } else if (score0Value.toString() == "7" && score1Value < BigNumber.from(7)) {
       setContractAddress(level01);
+      blast();
       //console.log("address:", contractAddress);
     } else {
       start;
