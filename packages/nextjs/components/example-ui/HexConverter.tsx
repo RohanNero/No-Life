@@ -59,7 +59,7 @@ export const HexConverter = () => {
             {showInput && (
               <div>
                 {inputs.map(input => (
-                  <div key={input.id} className={`flex mb-2 mt-2 ${input.id > 1 && "hidden"}`}>
+                  <div key={input.id} className={`flex mt-2 ${input.id > 1 && "hidden"}`}>
                     <input
                       className="input italic font-bai-jamjuree w-1/3 px-5 bg-red-600 bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white"
                       type={input.type}
@@ -72,7 +72,7 @@ export const HexConverter = () => {
               </div>
             )}
             <button
-              className="bg-red-500 ml-auto text-white rounded-md px-4 py-2"
+              className={` ml-auto text-white rounded-md px-4 py-2 mt-2 ${showInput ? "bg-red-500" : "bg-green-500"} `}
               onClick={() => (showInput ? setShowInput(false) : setShowInput(true))}
             >
               {showInput ? "Remove Input" : "Add Input"}
