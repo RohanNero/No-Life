@@ -9,6 +9,9 @@ export const ContractData = () => {
   const [transitionEnabled] = useState(true);
   //  const [isRightDirection, setIsRightDirection] = useState(false);
   const [marqueeSpeed, setMarqueeSpeed] = useState(0);
+  const [currentText, setText] = useState(
+    "Oh no, the Phygital Actuation has been realized! This is catastrophic! Reality as we know it has been altered, or should I say encoded! We need your help, Anon. The entire laboratory is in chaos, and many of our scientists are trapped. You're our only hope. Please, hurry and save them before it's too late!",
+  );
   const { address } = useAccount();
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -25,11 +28,18 @@ export const ContractData = () => {
     functionName: "currentData",
   });
 
+  // useScaffoldEventSubscriber({
+  //   contractName: "YourContract",
+  //   eventName: "GreetingChange",
+  //   listener: (greetingSetter, newGreeting, premium, value) => {
+  //     alert(greetingSetter);
+  //   },
+  // });
   useScaffoldEventSubscriber({
-    contractName: "YourContract",
-    eventName: "GreetingChange",
-    listener: (greetingSetter, newGreeting, premium, value) => {
-      alert(greetingSetter);
+    contractName: "CodingRay",
+    eventName: "CodingRay__DirectHit",
+    listener: () => {
+      alert();
     },
   });
   const uint = 7;
@@ -53,8 +63,9 @@ export const ContractData = () => {
 
   return (
     <div
-      className={`flex flex-col max-w-2lg bg-gray-400 shadow-lg px-5 py-4 h-full w-full ${showAnimation ? "animate-zoom" : ""
-        }`}
+      className={`flex flex-col max-w-2lg bg-gray-400 shadow-lg px-5 py-4 h-full w-full ${
+        showAnimation ? "animate-zoom" : ""
+      }`}
     >
       <div className="flex justify-between w-full">
         <div className="bg-secondary border border-primary rounded-xl flex">
@@ -68,7 +79,7 @@ export const ContractData = () => {
       <div className="mt-3 border border-primary bg-neutral rounded-3xl text-secondary whitespace-nowrap w-full h-full tracking-tighter font-bai-jamjuree leading-tight">
         <div className="relative overflow-x-hidden" ref={containerRef}>
           <div>
-            <div className="px-4 pt-1">{currentLevel || " "}</div>
+            <div className="px-4 pt-1 break-words whitespace-pre-wrap">{currentText || " "}</div>
           </div>
         </div>
       </div>
