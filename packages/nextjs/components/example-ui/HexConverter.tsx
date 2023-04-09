@@ -4,6 +4,7 @@ import { useScaffoldContractRead } from "~~/hooks/scaffold-eth";
 
 export const HexConverter = () => {
   const [hexValue, setHexValue] = useState("");
+  const [showInput, setShowInput] = useState(false);
 
   const { data: currentData } = useScaffoldContractRead({
     contractName: "HexConverter",
@@ -16,7 +17,17 @@ export const HexConverter = () => {
       e.preventDefault();
     }
   };
+  const [inputs, setInputs] = useState([{ id: 1, value: "", type: "text" }]);
 
+  const handleInputChange = () => {
+    if (inputs.length === 1) {
+      setInputs([...inputs, { id: inputs.length + 1, value: "", type: "text" }]);
+      setShowInput(true); // set state to true when input is added
+    } else {
+      setInputs(inputs.slice(0, -1));
+      setShowInput(false); // set state to false when input is removed
+    }
+  };
   return (
     <div className="flex flex-col h-full w-full p-1 bg-gray-400 relative pb-10">
       <div className="flex-1 flex-col h-full mx-5 sm:mx-8 mx-20">
@@ -33,21 +44,44 @@ export const HexConverter = () => {
               onKeyPress={hexInput}
             />
           </div>
-          <div className="mt-2 flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-1">
-            <input
-              type="text"
-              placeholder="# of Strings"
-              className="input italic font-bai-jamjuree w-1/3 px-5 bg-red-600 bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white"
-            />
-            <input
-              type="text"
-              placeholder="# of Uints"
-              className="input italic ml-auto font-bai-jamjuree w-1/3 px-5 bg-red-600 bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white"
-            />
+          <div>
+            <div className="mt-2 flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-1">
+              <input
+                type="text"
+                placeholder="# of Strings"
+                className="input italic font-bai-jamjuree w-1/3 px-5 bg-red-600 bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white"
+              />
+              <input
+                type="text"
+                placeholder="# of Uints"
+                className="input italic ml-auto font-bai-jamjuree w-1/3 px-5 bg-red-600 bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white"
+              />
+            </div>
+            {showInput && (
+              <div>
+                {inputs.map(input => (
+                  <div key={input.id} className={`flex mb-2 mt-2 ${input.id > 1 && "hidden"}`}>
+                    <input
+                      className="input italic font-bai-jamjuree w-1/3 px-5 bg-red-600 bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white"
+                      type={input.type}
+                      placeholder={`Enter input ${input.id}`}
+                      value={input.value}
+                      onChange={() => handleInputChange()}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+            <button
+              className="bg-red-500 ml-auto text-white rounded-md px-4 py-2"
+              onClick={() => (showInput ? setShowInput(false) : setShowInput(true))}
+            >
+              {showInput ? "Remove Input" : "Add Input"}
+            </button>
             <div className="flex rounded-full p-1 flex-shrink-0">
               <div className="flex rounded-full border-2 border-primary p-1">
                 <button
-                  className={`btn btn-primary rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest`}
+                  className={`btn btn-primary ml-auto rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest`}
                   //onClick={fetch}
                 >
                   <>
@@ -55,6 +89,7 @@ export const HexConverter = () => {
                   </>
                 </button>
               </div>
+
               <button
                 onClick={() => {
                   console.log(currentData);
@@ -67,8 +102,10 @@ export const HexConverter = () => {
             <div className="badge badge-warning">0.01 ETH + Gas</div>
           </div> */}
           <div className="mt-4 flex gap-2 items-start">
-            <span className="text-sm leading-tight">Hex value:</span>
-            <span className="text-sm leading-tight">{hexValue == "" ? "" : currentData}</span>
+            <span className="text-2xl justify-center leading-tight">Hex value:</span>
+            <span className="text-lg justify-center leading-tight bg-gray-100 rounded-md border border-black p-1">
+              {hexValue == "" ? "" : currentData}{" "}
+            </span>
           </div>
         </div>
       </div>
