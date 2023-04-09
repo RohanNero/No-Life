@@ -4,7 +4,7 @@ Embark on a perilous adventure through solidity encoding and decoding!
 
 ## How to play
 
-Begin by
+Begin by following the main scaffold-eth 2 guide with `yarn chain`, `yarn deploy`, and `yarn start`. Then begin playing by going to the game-ui page and reading the dialogue!
 
 ## Useful links and sources
 
