@@ -135,6 +135,10 @@ Or should starting the game run a script that deploys everything? This way all c
 - both of those to update on correct `blast`
 - hex converter to be able to call different functions
 - create decoder
+- header and footer update
+- audio onClick
+- need google docs to write dialogue
+-
 
 ## Lessons
 

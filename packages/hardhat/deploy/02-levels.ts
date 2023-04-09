@@ -26,7 +26,7 @@ const deployYourContract: DeployFunction = async function (
   //console.log("code reached")
   //console.log(levelArgs[0])
 
-  /**@notice deploy the Coding Ray */
+  /**@notice deploy the 0th level*/
   await deploy("Level00", {
     from: deployer,
     // Contract constructor arguments
@@ -37,16 +37,16 @@ const deployYourContract: DeployFunction = async function (
     autoMine: true,
   })
 
-  /**@notice deploy the Hex Converter */
-  //   await deploy("Level01", {
-  //     from: deployer,
-  //     // Contract constructor arguments
-  //     args: levelArgs[1],
-  //     log: true,
-  //     // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
-  //     // automatically mining the contract deployment transaction. There is no effect on live networks.
-  //     autoMine: true,
-  //   })
+  /**@notice deploy the 1st level */
+  await deploy("Level01", {
+    from: deployer,
+    // Contract constructor arguments
+    args: levelArgs[1],
+    log: true,
+    // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
+    // automatically mining the contract deployment transaction. There is no effect on live networks.
+    autoMine: true,
+  })
 
   // Get the deployed contract
   // const yourContract = await hre.ethers.getContract("YourContract", deployer);

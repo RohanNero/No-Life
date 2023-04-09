@@ -50,6 +50,7 @@ contract Level00 {
         _secondLockedDoor = lockedDoor2;
         _firstEnemy = enemy;
         _thirdLockedDoor = lockedDoor3;
+        countMap[tx.origin] = 0;
     }
 
     /**@notice this function handles calls to the contract that don't have function selectors
@@ -64,7 +65,7 @@ contract Level00 {
         } else if(keccak256(msg.data) == keccak256(_lockedDoor)) {
             this.firstLockedDoor();
         } else if(keccak256(msg.data) == keccak256(_secondLockedDoor)) {
-            this.firstLockedDoor();
+            this.secondLockedDoor();
         } else if(keccak256(msg.data) == keccak256(_firstEnemy)) {
             this.firstEnemy();
         } else if(keccak256(msg.data) == keccak256(_thirdLockedDoor)) {
@@ -89,53 +90,61 @@ contract Level00 {
     /**@notice the first person to save! (problem to solve)
      * @dev the fallback function calls this
      * @dev all problems increment the count by one */
-    function doctorMorris() external onlyFallback playTheRules(countMap[msg.sender], 0) {
-        countMap[msg.sender] = 1; // more secure than `count++`
+    function doctorMorris() external onlyFallback playTheRules(countMap[tx.origin], 0) {
+        countMap[tx.origin] = 1; // more secure than `count++`
     }
 
 
     /**@notice the second problem to solve
      * @dev  */
-    function doctorKeller() external onlyFallback playTheRules(countMap[msg.sender], 1) {
-        countMap[msg.sender] = 2;
+    function doctorKeller() external onlyFallback playTheRules(countMap[tx.origin], 1) {
+        countMap[tx.origin] = 2;
        
     }
 
     /**@notice the second problem to solve
      * @dev  */
-    function fusedDoctors() external playTheRules(countMap[msg.sender], 2) {
-        countMap[msg.sender] = 3;
+    function fusedDoctors() external playTheRules(countMap[tx.origin], 2) {
+        countMap[tx.origin] = 3;
     }
 
     /**@notice the second problem to solve
      * @dev  */
-    function firstLockedDoor() external playTheRules(countMap[msg.sender], 3) {
-        countMap[msg.sender] = 4;
+    function firstLockedDoor() external playTheRules(countMap[tx.origin], 3) {
+        countMap[tx.origin] = 4;
     }
 
     /**@notice the second problem to solve
      * @dev  */
-    function secondLockedDoor() external playTheRules(countMap[msg.sender], 4) {
-        countMap[msg.sender] = 5;
+    function secondLockedDoor() external playTheRules(countMap[tx.origin], 4) {
+        countMap[tx.origin] = 5;
     }
 
     /**@notice the first enemy to defeat (our version of a headcrab: `angryferris`; our version of a zombie is `rustdev`)
      * @dev player will have x seconds to input correct input or they "lose", (same as first two problems except risk of losing) */
-    function firstEnemy() external playTheRules(countMap[msg.sender], 5) {
-        countMap[msg.sender] = 6;
+    function firstEnemy() external playTheRules(countMap[tx.origin], 5) {
+        countMap[tx.origin] = 6;
     }
 
     /**@notice the third door and final problem of Level 00
      * @dev this door requires players to encode 3 strings in alphabetical order */
-    function thirdLockedDoor () external playTheRules(countMap[msg.sender], 6) {
-        countMap[msg.sender] = 7;
+    function thirdLockedDoor () external playTheRules(countMap[tx.origin], 6) {
+        countMap[tx.origin] = 7;
     }
 
     /** Helper functions */
 
-    /**@notice this function resets the level for the caller
+
+    /**@notice this function resets the level for the caller 
+     * @notice (Start is capitalized because this is also used for players to start the game)
      * @dev sets the `count` for msg.sender to 0 in the countMap mapping */
-     function restart() public {
-        delete countMap[msg.sender];
+     function reStart() public {
+        countMap[tx.origin] = 0;
      }
+
+
+    /**@notice this function returns this contract's address */
+    function viewAddress() public view returns(address) {
+        return address(this);
+    }
 }

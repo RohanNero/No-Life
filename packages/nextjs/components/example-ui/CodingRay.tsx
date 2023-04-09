@@ -1,16 +1,99 @@
 import { useState } from "react";
+import { BigNumber } from "ethers";
+import { useAccount } from "wagmi";
 import { ArrowSmallRightIcon } from "@heroicons/react/24/outline";
-import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
+import { useScaffoldContractRead, useScaffoldContractWrite, useScaffoldEventSubscriber } from "~~/hooks/scaffold-eth";
 
 export const CodingRay = () => {
   //   const [visible, setVisible] = useState(true);
   const [newGreeting, setNewGreeting] = useState("");
+  const [contractAddress, setContractAddress] = useState<string | undefined>("");
+  const { address } = useAccount();
+  //console.log("deployer:", address);
 
-  const { writeAsync, isLoading } = useScaffoldContractWrite({
-    contractName: "YourContract",
-    functionName: "setGreeting",
-    args: [newGreeting],
-    value: "0.01",
+  // const { writeAsync, isLoading } = useScaffoldContractWrite({
+  //   contractName: "YourContract",
+  //   functionName: "setGreeting",
+  //   args: [newGreeting],
+  //   value: "0.01",
+  // });
+  const { writeAsync: start } = useScaffoldContractWrite({
+    contractName: "Level00",
+    functionName: "reStart",
+  });
+  const { data: score0 } = useScaffoldContractRead({
+    contractName: "Level00",
+    functionName: "countMap",
+    args: [address],
+  });
+  const { data: score1 } = useScaffoldContractRead({
+    contractName: "Level01",
+    functionName: "countMap",
+    args: [address],
+  });
+  // const { data: score2 } = useScaffoldContractRead({
+  //   contractName: "Level02",
+  //   functionName: "countMap",
+  //   args: [address],
+  // });
+  // const { data: score3 } = useScaffoldContractRead({
+  //   contractName: "Level03",
+  //   functionName: "countMap",
+  //   args: [address],
+  // });
+
+  /** Getting level addresses */
+  const { data: level00 } = useScaffoldContractRead({
+    contractName: "Level00",
+    functionName: "viewAddress",
+  });
+  const { data: level01 } = useScaffoldContractRead({
+    contractName: "Level01",
+    functionName: "viewAddress",
+  });
+
+  //console.log("score0:", score0Value);
+  /** This if statement determines what level is interacted with */
+
+  const handleBlast = () => {
+    const score0Value = score0 ? score0 : 0;
+    console.log("score0:", score0Value);
+    const score1Value = score1 ? score1 : 0;
+    console.log("score1:", score1Value);
+    console.log("bool:", score0Value < 7);
+    if (score0Value < BigNumber.from(7)) {
+      setContractAddress(level00);
+      //console.log(contractAddress);
+      blast();
+      console.log(score0Value);
+    } else if (score1Value.toString() == "7" && score1Value.toString() < "7") {
+      setContractAddress(level01);
+      //console.log("address:", contractAddress);
+    } else {
+      start;
+    }
+  };
+
+  const { writeAsync: blast, isLoading } = useScaffoldContractWrite({
+    contractName: "CodingRay",
+    functionName: "blast",
+    args: [`${contractAddress}`, `0x${newGreeting}`],
+  });
+
+  useScaffoldEventSubscriber({
+    contractName: "CodingRay",
+    eventName: "CodingRay__ZeroDamage",
+    listener: () => {
+      alert("Zero Damage!");
+    },
+  });
+
+  useScaffoldEventSubscriber({
+    contractName: "CodingRay",
+    eventName: "CodingRay__DirectHit",
+    listener: () => {
+      alert("Direct Hit!");
+    },
   });
 
   return (
@@ -33,7 +116,7 @@ export const CodingRay = () => {
                   className={`btn btn-primary bg-red-600 rounded-full capitalize font-normal font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest ${
                     isLoading ? "loading" : ""
                   }`}
-                  onClick={writeAsync}
+                  onClick={handleBlast}
                 >
                   {!isLoading && (
                     <>

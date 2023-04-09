@@ -50,6 +50,7 @@ contract Level02 {
         _secondLockedDoor = lockedDoor2;
         _firstEnemy = enemy;
         _thirdLockedDoor = lockedDoor3;
+        countMap[tx.origin] = 0;
     }
 
     /**@notice this function handles calls to the contract that don't have function selectors
@@ -138,4 +139,9 @@ contract Level02 {
      function restart() public {
         delete countMap[msg.sender];
      }
+
+    /**@notice this function returns this contract's address */
+    function viewAddress() public view returns(address) {
+        return address(this);
+    }
 }

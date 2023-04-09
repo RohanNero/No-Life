@@ -16,13 +16,13 @@ contract Level01 {
     mapping(address => uint) public countMap;
 
     /**@notice The Problem's solutions, passed inside the constructor */
-    bytes private _drMorris;
-    bytes private _drKeller;
-    bytes private _fusedDoctors;
-    bytes private _lockedDoor; 
-    bytes private _secondLockedDoor;
-    bytes private _firstEnemy;
-    bytes private _thirdLockedDoor;
+    bytes private _secondEnemy;
+    bytes private _wizardDoctors;
+    bytes private _fourthLockedDoor;
+    bytes private _fifthLockedDoor; 
+    bytes private _thirdEnemy;
+    bytes private _fourthEnemy;
+    bytes private _sixthLockedDoor;
     
     /**@notice emitted when provided incorrect calldata */
     event Level00__ZeroDamage();
@@ -43,32 +43,33 @@ contract Level01 {
 
     /**@notice values need to be passed to the contract for */
     constructor(bytes memory drMorris, bytes memory drKeller, bytes memory fusedDoctor, bytes memory lockedDoor, bytes memory lockedDoor2, bytes memory enemy, bytes memory lockedDoor3 ) {
-        _drMorris = drMorris;
-        _drKeller = drKeller;
-        _fusedDoctors = fusedDoctor;
-        _lockedDoor = lockedDoor;
-        _secondLockedDoor = lockedDoor2;
-        _firstEnemy = enemy;
-        _thirdLockedDoor = lockedDoor3;
+        _secondEnemy = drMorris;
+        _wizardDoctors = drKeller;
+        _fourthLockedDoor = fusedDoctor;
+        _fifthLockedDoor = lockedDoor;
+        _thirdEnemy = lockedDoor2;
+        _fourthEnemy = enemy;
+        _sixthLockedDoor = lockedDoor3;
+        countMap[tx.origin] = 0;
     }
 
     /**@notice this function handles calls to the contract that don't have function selectors
      * @dev such as `abi.encode(Packed)` values */
     fallback() external {
-        if(keccak256(msg.data) == keccak256(_drMorris)) {
-            this.zero();
-        } else if(keccak256(msg.data) == keccak256(_drKeller)) {
-            this.one();
-        } else if(keccak256(msg.data) == keccak256(_fusedDoctors)) {
-            this.two();
-        } else if(keccak256(msg.data) == keccak256(_lockedDoor)) {
-            this.three();
-        } else if(keccak256(msg.data) == keccak256(_secondLockedDoor)) {
-            this.four();
-        } else if(keccak256(msg.data) == keccak256(_firstEnemy)) {
-            this.five();
-        } else if(keccak256(msg.data) == keccak256(_thirdLockedDoor)) {
-            this.six();
+        if(keccak256(msg.data) == keccak256(_secondEnemy)) {
+            this.secondEnemy();
+        } else if(keccak256(msg.data) == keccak256(_wizardDoctors)) {
+            this.wizardDoctors();
+        } else if(keccak256(msg.data) == keccak256(_fourthLockedDoor)) {
+            this.fourthLockedDoor();
+        } else if(keccak256(msg.data) == keccak256(_fifthLockedDoor)) {
+            this.fifthLockedDoor();
+        } else if(keccak256(msg.data) == keccak256(_thirdEnemy)) {
+            this.thirdEnemy();
+        } else if(keccak256(msg.data) == keccak256(_fourthEnemy)) {
+            this.fourthEnemy();
+        } else if(keccak256(msg.data) == keccak256(_sixthLockedDoor)) {
+            this.sixthLockedDoor();
         } else {
             emit Level00__ZeroDamage();
         }
@@ -89,53 +90,59 @@ contract Level01 {
     /**@notice the first person to save! (problem to solve)
      * @dev the fallback function calls this
      * @dev all problems increment the count by one */
-    function zero() external onlyFallback playTheRules(countMap[msg.sender], 0) {
+    function secondEnemy() external onlyFallback playTheRules(countMap[msg.sender], 0) {
         countMap[msg.sender] = 1; // more secure than `count++`
     }
 
 
     /**@notice the second problem to solve
      * @dev  */
-    function one() external onlyFallback playTheRules(countMap[msg.sender], 1) {
+    function wizardDoctors() external onlyFallback playTheRules(countMap[msg.sender], 1) {
         countMap[msg.sender] = 2;
        
     }
 
     /**@notice the second problem to solve
      * @dev  */
-    function two() external playTheRules(countMap[msg.sender], 2) {
+    function fourthLockedDoor() external playTheRules(countMap[msg.sender], 2) {
         countMap[msg.sender] = 3;
     }
 
     /**@notice the second problem to solve
      * @dev  */
-    function three() external playTheRules(countMap[msg.sender], 3) {
+    function fifthLockedDoor() external playTheRules(countMap[msg.sender], 3) {
         countMap[msg.sender] = 4;
     }
 
     /**@notice the second problem to solve
      * @dev  */
-    function four() external playTheRules(countMap[msg.sender], 4) {
+    function thirdEnemy() external playTheRules(countMap[msg.sender], 4) {
         countMap[msg.sender] = 5;
     }
 
     /**@notice the first enemy to defeat (our version of a headcrab: `angryferris`; our version of a zombie is `rustdev`)
      * @dev player will have x seconds to input correct input or they "lose", (same as first two problems except risk of losing) */
-    function five() external playTheRules(countMap[msg.sender], 5) {
+    function fourthEnemy() external playTheRules(countMap[msg.sender], 5) {
         countMap[msg.sender] = 6;
     }
 
     /**@notice the third door and final problem of Level 00
      * @dev this door requires players to encode 3 strings in alphabetical order */
-    function six () external playTheRules(countMap[msg.sender], 6) {
+    function sixthLockedDoor () external playTheRules(countMap[msg.sender], 6) {
         countMap[msg.sender] = 7;
     }
 
     /** Helper functions */
 
-    /**@notice this function resets the level for the caller
+    /**@notice this function resets the level for the caller 
+     * @notice (Start is capitalized because this is also used for players to start the game)
      * @dev sets the `count` for msg.sender to 0 in the countMap mapping */
-     function restart() public {
-        delete countMap[msg.sender];
+     function reStart() public {
+        countMap[msg.sender] = 0;
      }
+    
+    /**@notice this function returns this contract's address */
+    function viewAddress() public view returns(address) {
+        return address(this);
+    }
 }
