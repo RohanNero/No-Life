@@ -72,7 +72,7 @@ export const HexConverter = () => {
             {showInput && (
               <input
                 type="text"
-                placeholder="Enter Signature or Selector"
+                placeholder="Enter Function Signature"
                 className="input italic font-bai-jamjuree w-full px-5 bg-black text-secondary bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-secondary"
                 onChange={e => setSignature(e.target.value)}
                 //onKeyPress={selector}

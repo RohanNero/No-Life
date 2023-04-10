@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Popup } from "./Popup";
 //import { currentText } from "./ContractData";
 import { BigNumber } from "ethers";
 import { useAccount } from "wagmi";
@@ -6,6 +7,8 @@ import { ArrowSmallRightIcon } from "@heroicons/react/24/outline";
 import { useScaffoldContractRead, useScaffoldContractWrite, useScaffoldEventSubscriber } from "~~/hooks/scaffold-eth";
 
 export const CodingRay = () => {
+  const [showPopup, setShowPopup] = useState(false);
+  const [message, setMessage] = useState("");
   //   const [visible, setVisible] = useState(true);
   const [newGreeting, setNewGreeting] = useState("");
   const [contractAddress, setContractAddress] = useState<string | undefined>("");
@@ -102,7 +105,8 @@ export const CodingRay = () => {
     contractName: "CodingRay",
     eventName: "CodingRay__ZeroDamage",
     listener: () => {
-      alert("Zero Damage!");
+      setMessage("Zero Damage!");
+      setShowPopup(true);
     },
   });
 
@@ -110,12 +114,22 @@ export const CodingRay = () => {
     contractName: "CodingRay",
     eventName: "CodingRay__DirectHit",
     listener: () => {
-      alert("Direct Hit!");
+      //alert("Direct Hit!");
+      setMessage("Direct Hit!");
+      setShowPopup(true);
     },
   });
 
   return (
     <div className="flex flex-col h-full w-full p-1 bg-gray-400 relative pb-10">
+      {showPopup && (
+        <Popup
+          message={message}
+          onClose={() => {
+            setShowPopup(false);
+          }}
+        />
+      )}
       <div className="flex-1 flex-col h-full mx-5 sm:mx-8 mx-20">
         <div className="flex flex-col mt-6 px-7 py-8 bg-gray-50 bg-opacity-90 rounded shadow-lg border-2 border-primary">
           <span className="text-4xl sm:text-6xl text-black text-center">Coding Ray</span>
