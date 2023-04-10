@@ -5,7 +5,8 @@ error Level00__AlreadyPassed(uint count, uint problemId);
 
 /**@title Level 00
  * @author Rohan Nero
- * @notice this level doesn't show the player directly how encoding works, but instead allows them to play with it a little first */
+ * @notice this level doesn't show the player directly how encoding works, but instead allows them to play with it a little first
+ * @dev players calls are sent to fallback function that determines if value passed was correct or not */
 contract Level00 {
 
     ///**@notice every Level contract has a `count` variable that represents what problem the player is currently on */
@@ -15,7 +16,8 @@ contract Level00 {
      * @dev player's address => count representing which problem they are on*/
     mapping(address => uint) public countMap;
 
-    /**@notice The Problem's solutions, passed inside the constructor */
+    /**@notice The Problem's solutions, passed inside the constructor
+     * @dev super duper secure since they say private right?... they are private right?... */
     bytes private _drMorris;
     bytes private _drKeller;
     bytes private _fusedDoctors;
@@ -42,14 +44,14 @@ contract Level00 {
     }
 
     /**@notice values need to be passed to the contract for */
-    constructor(bytes memory drMorris, bytes memory drKeller, bytes memory fusedDoctor, bytes memory lockedDoor, bytes memory lockedDoor2, bytes memory enemy, bytes memory lockedDoor3 ) {
-        _drMorris = drMorris;
-        _drKeller = drKeller;
-        _fusedDoctors = fusedDoctor;
-        _lockedDoor = lockedDoor;
-        _secondLockedDoor = lockedDoor2;
-        _firstEnemy = enemy;
-        _thirdLockedDoor = lockedDoor3;
+    constructor(bytes memory zero, bytes memory one, bytes memory two, bytes memory three, bytes memory four, bytes memory five, bytes memory six ) {
+        _drMorris = zero;
+        _drKeller = one;
+        _fusedDoctors = two;
+        _lockedDoor = three;
+        _secondLockedDoor = four;
+        _firstEnemy = five;
+        _thirdLockedDoor = six;
         countMap[tx.origin] = 0;
     }
 

@@ -42,14 +42,14 @@ contract Level01 {
     }
 
     /**@notice values need to be passed to the contract for */
-    constructor(bytes memory drMorris, bytes memory drKeller, bytes memory fusedDoctor, bytes memory lockedDoor, bytes memory lockedDoor2, bytes memory enemy, bytes memory lockedDoor3 ) {
-        _secondEnemy = drMorris;
-        _wizardDoctors = drKeller;
-        _fourthLockedDoor = fusedDoctor;
-        _fifthLockedDoor = lockedDoor;
-        _thirdEnemy = lockedDoor2;
-        _fourthEnemy = enemy;
-        _sixthLockedDoor = lockedDoor3;
+    constructor(bytes memory zero, bytes memory one, bytes memory two, bytes memory three, bytes memory four, bytes memory five, bytes memory six ) {
+        _secondEnemy = zero;
+        _wizardDoctors = one;
+        _fourthLockedDoor = two;
+        _fifthLockedDoor = three;
+        _thirdEnemy = four;
+        _fourthEnemy = five;
+        _sixthLockedDoor = six;
         countMap[tx.origin] = 0;
     }
 

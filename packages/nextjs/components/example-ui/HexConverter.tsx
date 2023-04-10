@@ -101,7 +101,7 @@ export const HexConverter = () => {
               <span className="text-2xl justify-center leading-tight">Hex value:</span>
               <div className="flex items-center overflow-x-scroll overflow-y-hidden max-w-full">
                 <span className="text-lg justify-center leading-tight bg-gray-100 rounded-md border border-black p-1 whitespace-wrap">
-                  {currentData}
+                  {currentData ? currentData.slice(2) : currentData}
                 </span>
               </div>
             </div>

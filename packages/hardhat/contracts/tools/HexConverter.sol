@@ -2,6 +2,10 @@
 
 pragma solidity ^0.8.7;
 
+/**@title Hex Converter 
+ * @author Rohan Nero
+ * @notice a powerful tool in the right hands
+ * @dev this contract was created as a part of an educational game about ABI encoding called No-Life */
 contract HexConverter {
 
    /**@notice used to return decoded values */
