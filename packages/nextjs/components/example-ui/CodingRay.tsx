@@ -107,6 +107,7 @@ export const CodingRay = () => {
     listener: () => {
       setMessage("Zero Damage!");
       setShowPopup(true);
+      console.log("zero damage");
     },
   });
 

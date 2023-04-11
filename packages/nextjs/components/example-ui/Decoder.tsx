@@ -7,7 +7,7 @@ export const Decoder = () => {
   const [hexValue, setHexValue] = useState("");
   const [numOfStrings, setNumOfStrings] = useState("");
   const [numOfUints, setNumOfUints] = useState("");
-  console.log("hexvalue: ", hexValue);
+  //console.log("hexvalue: ", hexValue);
 
   const { writeAsync: decodeString } = useScaffoldContractWrite({
     contractName: "HexConverter",
