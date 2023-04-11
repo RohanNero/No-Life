@@ -71,7 +71,7 @@ export const Decoder = () => {
             <input
               type="text"
               placeholder="Enter Here For Conversion"
-              className="input italic font-bai-jamjuree w-full px-5 bg-black bg-[length:100%_100%] border border-primary text-lg sm:text-2xl text-white placeholder-white"
+              className="input italic font-bai-jamjuree w-full px-5 bg-black bg-[length:100%_100%] border border-primary text-lg sm:text-2xl text-secondary placeholder-secondary"
               onChange={e => setHexValue(e.target.value)}
               onKeyPress={hexInput}
             />
