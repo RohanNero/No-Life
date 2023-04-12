@@ -146,7 +146,7 @@ export const CodingRay = () => {
             <div className="flex rounded-full flex-shrink-0">
               <div className="flex rounded-full border-2 border-primary p-1">
                 <button
-                  className={`btn btn-primary bg-secondary rounded-full capitalize font-normal text-black font-white w-24 flex items-center gap-1 hover:gap-2 transition-all tracking-widest ${
+                  className={`btn btn-primary bg-secondary rounded-full capitalize font-normal text-black font-white w-24 flex items-center gap-1 hover:gap-2 hover:text-orange-700 transition-all tracking-widest ${
                     isLoading ? "loading" : ""
                   }`}
                   onClick={handleBlast}

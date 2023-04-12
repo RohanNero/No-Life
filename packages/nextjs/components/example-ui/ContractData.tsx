@@ -1,4 +1,3 @@
-/* eslint-disable*/
 import { useEffect, useRef, useState } from "react";
 import { dialogue } from "../../utils/scaffold-eth/dialogue";
 import { BigNumber } from "ethers";
@@ -19,13 +18,6 @@ export const ContractData = () => {
     functionName: "currentData",
   });
 
-  // VIEW THE PLAYER'S SCORE
-  const { data: totalCounter } = useScaffoldContractRead({
-    contractName: "Level00",
-    functionName: "countMap",
-    args: [address],
-  });
-
   // RESETS THE PLAYER'S SCORE
   const { writeAsync: reStart0 } = useScaffoldContractWrite({
     contractName: "Level00",
@@ -41,32 +33,54 @@ export const ContractData = () => {
     contractName: "CodingRay",
     eventName: "CodingRay__DirectHit",
     listener: () => {
-      setCurrentDialogue(currentDialogue + 1);
-      setCurrentText([...currentText, dialogue[currentDialogue]]);
+      // setCurrentDialogue(currentDialogue + 1);
+      // setCurrentText(prevState => [...prevState, dialogue[currentDialogue]]);
       //alert(currentDialogue);
     },
   });
 
+  // VIEW THE PLAYER'S SCORE
+  const { data: totalCounter } = useScaffoldContractRead({
+    contractName: "Level00",
+    functionName: "countMap",
+    args: [address],
+  });
+
   // This useEffect() handles resetting the game for players when the page refreshes
-  //console.log("length: ", currentText.length);
-  //console.log("totalCount:", totalCounter);
+  console.log("length: ", currentText.length);
+  console.log("totalCount:", totalCounter);
+  // useEffect(() => {
+  //   const total = totalCounter ? totalCounter : 0;
+  //   if (currentText.length === 1 && total > BigNumber.from(0)) {
+  //     reStart0();
+  //     console.log("Score reset for Level 00");
+  //   }
+  // }, [currentText, totalCounter]);
+
+  const setCurrentTextBasedOnProgress = (progress: number) => {
+    setCurrentText([dialogue[0], ...dialogue.slice(1, progress + 1)]);
+  };
+
   useEffect(() => {
     const total = totalCounter ? totalCounter : 0;
-    if (currentText.length === 1 && total > BigNumber.from(0)) {
-      reStart0();
-      console.log("Score reset for Level 00");
-    }
-  }, [currentText, totalCounter]);
+    setCurrentTextBasedOnProgress(Number(total));
+  }, [totalCounter]);
 
   return (
     <div className={`flex flex-col max-w-2lg bg-gray-400 shadow-lg px-5 py-4 h-full w-full `}>
       <div className="flex justify-between w-full">
-        <div className="bg-secondary border border-primary rounded-xl flex">
-          <div className="p-2 py-1 border-r border-primary flex items-end">Current Level</div>
+        <div className="flex items-center bg-secondary border-primary rounded-xl">
+          <div className="  p-2 py-1 border-r border-primary flex items-end">Current Level</div>
           <div className="text-4xl text-right min-w-[3rem] px-2 py-1 flex justify-end font-bai-jamjuree">
             {currentLevel?.toString() || "0"}
           </div>
         </div>
+        <button
+          className="p-2 py-1 border-r bg-secondary border-primary rounded-xl flex items-end text-lg text-center font-semibold hover:bg-orange-700 hover:scale-110 ml-auto"
+          onClick={() => reStart0()}
+        >
+          RESTART
+        </button>
       </div>
 
       <div className="mt-3 border border-primary bg-neutral rounded-3xl text-secondary whitespace-nowrap w-full h-full tracking-tighter font-bai-jamjuree leading-tight">
