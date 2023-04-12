@@ -11,7 +11,7 @@ export const CodingRay = () => {
   const [message, setMessage] = useState("");
   //   const [visible, setVisible] = useState(true);
   const [newGreeting, setNewGreeting] = useState("");
-  const [contractAddress, setContractAddress] = useState<string | undefined>("");
+  const [contractAddress, setContractAddress] = useState("");
   const { address } = useAccount();
   //console.log("deployer:", address);
 
@@ -76,30 +76,27 @@ export const CodingRay = () => {
     //   reStart1();
     // }
     if (score0Value < BigNumber.from(7)) {
-      setContractAddress(level00);
-      //console.log(contractAddress);
+      //console.log("level00:", level00.toString());
+
+      setContractAddress(level00 ? level00 : "0xe7DCFa3B5265aD66A78dA18d09B114B6aFC39B05");
+
+      console.log(contractAddress);
       blast();
       console.log(score0Value);
     } else if (score0Value.toString() == "7" && score1Value < BigNumber.from(7)) {
-      setContractAddress(level01);
+      setContractAddress(level01 ? level01 : "0x3242f077DF131827551bB4086F6e4caA01E3B5cF");
       blast();
       //console.log("address:", contractAddress);
     } else {
-      start;
+      start();
     }
   };
 
   const { writeAsync: blast, isLoading } = useScaffoldContractWrite({
     contractName: "CodingRay",
     functionName: "blast",
-    args: [`${contractAddress}`, `0x${newGreeting}`],
+    args: [`${contractAddress ? contractAddress : "0xe7DCFa3B5265aD66A78dA18d09B114B6aFC39B05"}`, `0x${newGreeting}`],
   });
-
-  // So you dont have to remove 0x
-  // const handleGreeting = () => {
-  //   newGreeting.slice(2);
-  //   setNewGreeting(newGreeting);
-  // };
 
   useScaffoldEventSubscriber({
     contractName: "CodingRay",
