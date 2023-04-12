@@ -1,19 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import { dialogue } from "../../utils/scaffold-eth/dialogue";
-import { BigNumber } from "ethers";
+//import { BigNumber } from "ethers";
 import { useAccount } from "wagmi";
 import { useScaffoldContractRead, useScaffoldContractWrite, useScaffoldEventSubscriber } from "~~/hooks/scaffold-eth";
 
 export const ContractData = () => {
-  const [transitionEnabled] = useState(true);
+  //const [transitionEnabled] = useState(true);
   const [currentText, setCurrentText] = useState([dialogue[0]]);
-  const [currentDialogue, setCurrentDialogue] = useState(1);
+  //const [currentDialogue, setCurrentDialogue] = useState(1);
   const { address } = useAccount();
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const greetingRef = useRef<HTMLDivElement>(null);
+  //const greetingRef = useRef<HTMLDivElement>(null);
 
-  const { data: currentLevel, isLoading: isGreetingLoading } = useScaffoldContractRead({
+  // GET CURRENT LEVEL  (currently not implemented)
+  const { data: currentLevel } = useScaffoldContractRead({
     contractName: "CodingRay",
     functionName: "currentData",
   });
