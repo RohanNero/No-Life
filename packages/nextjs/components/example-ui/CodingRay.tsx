@@ -15,12 +15,6 @@ export const CodingRay = () => {
   const { address } = useAccount();
   //console.log("deployer:", address);
 
-  // const { writeAsync, isLoading } = useScaffoldContractWrite({
-  //   contractName: "YourContract",
-  //   functionName: "setGreeting",
-  //   args: [newGreeting],
-  //   value: "0.01",
-  // });
   const { writeAsync: start } = useScaffoldContractWrite({
     contractName: "Level00",
     functionName: "reStart",
@@ -63,11 +57,6 @@ export const CodingRay = () => {
     const score0Value = score0 ? score0 : 0;
     //console.log("score0:", score0Value);
     const score1Value = score1 ? score1 : 0;
-    //console.log("score1:", score1Value);
-    //console.log("bool:", score0Value < 7);
-    //console.log("bool2:", score1Value < 7);
-    //console.log("bool3:", score0Value.toString() == "7");
-    //console.log("string:", score0Value.toString());
     // THIS CHECKS TO SEE IF PAGE WAS REFRESHED AND THEN WILL RESTART GAME FOR USER
     // console.log("length: ", currentText.length);
     // console.log("totalCount:", totalCounter);
