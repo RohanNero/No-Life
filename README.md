@@ -4,7 +4,9 @@ Embark on a perilous adventure through solidity encoding and decoding!
 
 ## How to play
 
-Start by following the main scaffold-eth 2 guide with `yarn chain`, `yarn deploy`, and `yarn start`. Then begin playing by going to the game-ui page and reading the dialogue!
+The game takes place right after a catastrophic event that leaves much of reality ABI encoded. You as the player must encode and decode hex strings using the `Hex Converter` and the `Decoder`, once you've gotten the encoded/decoded value, you pass it to the `Coding Ray`. The text box on the left side of the screen will update and a **Direct Hit** message will display momentarily upon inputting the correct value to the `Coding Ray`. If your answer was incorrect a **Zero Damage** message will pop up instead.
+
+Reach out to me on twitter if you have any suggestions or comments, and thanks for playing! I hope this helps to teach you a little bit about solidity's ABI encoding.
 
 ## Live Contract Addresses
 
@@ -20,7 +22,7 @@ Start by following the main scaffold-eth 2 guide with `yarn chain`, `yarn deploy
 - **[live demo](https://no-life-rohannero.vercel.app/)**
 - **[Youtube speedrun demo](https://youtu.be/pAEtaWvoB_0)**
 
-**Huge credit to [@austintgriffith](https://github.com/austintgriffith) for building scaffold-eth and [Carletex](https://github.com/carletex) for for [scaffold-eth 2](https://github.com/scaffold-eth/se-2)!**
+**Huge credit to [@austintgriffith](https://github.com/austintgriffith) for building scaffold-eth and [Carletex](https://github.com/carletex) for [scaffold-eth 2](https://github.com/scaffold-eth/se-2)!**
 
 You may find the original scaffold-eth 2 README at [SE2.md](SE2.md)!
 
